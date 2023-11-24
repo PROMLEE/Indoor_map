@@ -123,12 +123,7 @@ for f in file_list:
     # JSON 파일로 저장할 데이터 생성
     edge_data = []
     for id, pixels in components.items():
-        if id in [27,47,50,53,33,35,36]:
-            edge_data.append({"id": id, "caption": f"엘리베이터", "pixels": pixels})
-        elif id in [2,22,29,40,45,55,48,43,65]:
-            edge_data.append({"id": id, "caption": f"계단", "pixels": pixels})
-        else:
-            edge_data.append({"id": id, "caption": f"N:{id}", "pixels": pixels})
+        edge_data.append({"id": id, "caption": "", "pixels": pixels, "move_up":[0, 0], "move_down":[0,0]})
 
     # JSON 파일로 저장
     with open(os.path.join(json_file_path, result_name+".json"), "w") as file:
