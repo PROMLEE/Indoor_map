@@ -2,7 +2,7 @@ import cv2
 import os
 
 # 폴더 경로 지정
-folder_path = 'algorithm\sources'
+folder_path = 'sources'
 building_name = "CAU310"
 folder_path = os.path.join(folder_path, building_name, "masks")
 # 해당 경로의 파일 리스트 가져오기
