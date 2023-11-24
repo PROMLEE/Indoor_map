@@ -123,7 +123,7 @@ for f in file_list:
     # JSON 파일로 저장할 데이터 생성
     edge_data = []
     for id, pixels in components.items():
-        edge_data.append({"id": id, "caption": "", "pixels": pixels, "move_up":[0, 0], "move_down":[0,0]})
+        edge_data.append({"id": id, "caption": "", "pixels": pixels, "move_up":0, "move_down":0})
 
     # JSON 파일로 저장
     with open(os.path.join(json_file_path, result_name+".json"), "w") as file:

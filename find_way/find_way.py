@@ -11,7 +11,7 @@ def myPutText(src, text, pos, font_size, font_color) :
     draw.text(pos, text, font=font, fill= font_color)
     return np.array(img_pil)
 startPoint,startfloor = 4,5
-endPoint,endfloor = 44,7
+endPoint,endfloor = 44,5
 semipoint = startPoint
 ele_up = 0
 dx = [1, 0, -1, 0,1,1,-1,-1]
@@ -27,9 +27,9 @@ file_names = [f for f in os.listdir(os.path.join(path,building_name,"data")) if 
 # 파일 경로 생성 및 처리를 위한 for문
 for file_name in file_names:
     floor = int(file_name[-7:-5])
-    # if ele_up:
-    #     if floor != ele_up:
-    #         continue
+    if ele_up:
+        if floor != ele_up:
+            continue
     # JSON 파일에서 데이터 읽기
     with open(os.path.join(path, building_name,"data", file_name), "r") as file:
         data = json.load(file)
@@ -41,7 +41,7 @@ for file_name in file_names:
     # JSON 파일의 데이터를 사용하여 각 픽셀 위치에 점 찍기
     height, width = 1024, 1024  # 실제 이미지 크기에 맞게 조정해야 합니다.
     mask = np.zeros((height, width,3), dtype=np.uint8)
-    mask = myPutText(mask, building_name+" 건물 "+str(floor)+" 층입니다", (700, 20), 30, (255,0,0))
+    mask = myPutText(mask, building_name+" 건물 "+str(floor)+" 층입니다", (500, 20), 30, (255,0,0))
     for group in data:
         sum_x, sum_y, div = 0, 0, 0
         id = group["id"]
@@ -58,7 +58,7 @@ for file_name in file_names:
             sum_y += y
             div+=1
         if id != -2 and id!=1:
-            mask = myPutText(mask, str(id), (sum_x//div-7, sum_y//div-5), 11, (0,255,0))
+            mask = myPutText(mask, caption, (sum_x//div-7, sum_y//div-5), 11, (0,255,0))
         if id == semipoint:
             st_Averx, st_Avery = sum_x//div, sum_y//div
 
