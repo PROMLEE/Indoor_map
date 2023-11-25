@@ -36,13 +36,13 @@ json_file_path = os.path.join("result",building_name,"data")
 file_list = [f for f in os.listdir(json_file_path) if os.path.isfile(os.path.join(json_file_path, f))]
 
 while True:
-  # for i in range(len(file_list)):
-  #     print(i+1, "번 파일: ",file_list[i])
-  # print()
-  # floor = int(input("수정할 파일의 번호를 선택하세요(종료시 0을 입력하세요): "))
-  # if floor==0: break
-  # filename = os.path.join(json_file_path, file_list[floor-1])
-  filename = os.path.join(json_file_path, file_list[0])
+#   for i in range(len(file_list)):
+#       print(i+1, "번 파일: ",file_list[i])
+#   print()
+#   floor = int(input("수정할 파일의 번호를 선택하세요(종료시 0을 입력하세요): "))
+#   if floor==0: break
+#   filename = os.path.join(json_file_path, file_list[floor-1])
+  filename = os.path.join(json_file_path, file_list[1])
   data = load_json(filename)
 
   id_to_update = int(input("수정할 데이터의 ID를 입력하세요: "))
