@@ -11,7 +11,7 @@ def myPutText(src, text, pos, font_size, font_color) :
     draw.text(pos, text, font=font, fill= font_color)
     return np.array(img_pil)
 startPoint,startfloor = 4,5
-endPoint,endfloor = 44,5
+endPoint,endfloor = 44,7
 semipoint = startPoint
 ele_up = 0
 dx = [1, 0, -1, 0,1,1,-1,-1]
@@ -31,6 +31,7 @@ for file_name in file_names:
         if floor != ele_up:
             continue
     # JSON 파일에서 데이터 읽기
+    print(file_name)
     with open(os.path.join(path, building_name,"data", file_name), "r") as file:
         data = json.load(file)
 
@@ -58,7 +59,7 @@ for file_name in file_names:
             sum_y += y
             div+=1
         if id != -2 and id!=1:
-            mask = myPutText(mask, caption, (sum_x//div-7, sum_y//div-5), 11, (0,255,0))
+            mask = myPutText(mask, str(id), (sum_x//div-7, sum_y//div-5), 11, (0,255,0))
         if id == semipoint:
             st_Averx, st_Avery = sum_x//div, sum_y//div
 
