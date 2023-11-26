@@ -66,6 +66,16 @@ for file_name in file_names:
 
     print(st_Averx, st_Avery)
     Q = Queue()
+    if(floor==endfloor):
+        sum_x,sum_y,div=0,0,0
+        for item in data:
+            if item["id"] ==passELE:
+                for pixel in group["pixels"]:
+                    x, y = pixel["x"], pixel["y"]
+                    sum_x += x
+                    sum_y += y
+                    div+=1
+                st_Averx, st_Avery = sum_x//div, sum_y//div
     Q.put((st_Averx, st_Avery))
     board[st_Averx][st_Avery]=-1
     escape=True
