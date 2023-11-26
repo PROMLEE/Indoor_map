@@ -21,20 +21,19 @@ if(startfloor>endfloor): is_back=1
 dx = [1, 0, -1, 0,1,1,-1,-1]
 dy = [0, 1, 0, -1,1,-1,1,-1]
 # JSON 파일들의 기본 경로
-path = "result"
+url = "result"
 building_name = "CAU310" 
-way_file_path = os.path.join(path,building_name,"way")
+way_file_path = os.path.join(url,building_name,"way")
 if not os.path.exists(way_file_path):
     os.makedirs(way_file_path, exist_ok=True)
 # 파일명들을 나타내는 리스트
-file_names = [f for f in os.listdir(os.path.join(path,building_name,"data")) if os.path.isfile(os.path.join(path,building_name,"data", f))]
+file_names = [f for f in os.listdir(os.path.join(url,building_name,"data")) if os.path.isfile(os.path.join(url,building_name,"data", f))]
 # 파일 경로 생성 및 처리를 위한 for문
-
+print(file_names)
 for file_name in file_names:
     floor = int(file_name[-7:-5])
     # JSON 파일에서 데이터 읽기
-    print(file_name)
-    with open(os.path.join(path, building_name,"data", file_name), "r") as file:
+    with open(os.path.join(url, building_name,"data", file_name), "r") as file:
         data = json.load(file)
 
     # 마스크 이미지의 크기 설정
@@ -97,7 +96,7 @@ for file_name in file_names:
                     for item in data:
                         if item["id"] ==passELE:
                             passELE = item["move_up"]
-                if(is_back):
+                else:
                     for item in data:
                         if item["id"] ==passELE:
                             passELE = item["move_down"]
