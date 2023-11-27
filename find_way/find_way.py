@@ -14,8 +14,8 @@ def myPutText(src, text, pos, font_size, font_color):
     return np.array(img_pil)
 
 
-startPoint, startfloor = 5, 5
-endPoint, endfloor = 20, 5
+startPoint, startfloor = 5, 2
+endPoint, endfloor = 20, 7
 semipoint = startPoint
 is_back = 1
 if startfloor > endfloor:
@@ -82,6 +82,7 @@ for floor in range(startfloor, endfloor + is_back, is_back):
     Q.put((st_Averx, st_Avery))
     board[st_Averx][st_Avery] = -1
     escape = True
+    print(semipoint)
     if floor != endfloor and floor != startfloor:
         for item in data:
             if item["id"] == semipoint:
@@ -90,6 +91,10 @@ for floor in range(startfloor, endfloor + is_back, is_back):
                 else:
                     semipoint = item["move_up"]
                 break
+        mask_file_path = os.path.join(
+            way_file_path, building_name + "_{:02d}".format(floor) + ".png"
+        )
+        cv2.imwrite(mask_file_path, mask)
         continue
     while escape:
         cur = Q.get()
