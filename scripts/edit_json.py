@@ -54,7 +54,7 @@ while True:
     # if floor == 0:
     #     break
     # filename = os.path.join(json_file_path, file_list[floor - 1])
-    filename = os.path.join(json_file_path, file_list[2])
+    filename = os.path.join(json_file_path, file_list[3])
     data = load_json(filename)
 
     id_to_update = int(input("수정할 데이터의 ID를 입력하세요: "))
