@@ -63,10 +63,11 @@ white = np.array([255, 255, 255])
 building_name = "CAU310"
 mask_file_path = os.path.join("sources",building_name,"masks")
 file_list = [f for f in os.listdir(mask_file_path) if os.path.isfile(os.path.join(mask_file_path, f))]
-json_file_path = os.path.join("result",building_name,"data")
+json_file_path = os.path.join("result",building_name,"etc")
 if not os.path.exists(json_file_path):
     os.makedirs(json_file_path, exist_ok=True)
-for f in file_list:
+print(file_list)
+for f in file_list[:3]:
     result_name = f.replace("_mask.png", "")
     f_url = os.path.join(mask_file_path, f)
     mask = cv2.imread(f_url, cv2.IMREAD_COLOR)
@@ -117,14 +118,14 @@ for f in file_list:
                 components.setdefault(int(label), []).append({"x": int(x), "y": int(y)})
 
     # 이미지 저장
-    cv2.imwrite(os.path.join("result\CAU310\mask result", result_name+"_check.png"), new_mask)
+    # cv2.imwrite(os.path.join("result\CAU310\mask result", result_name+"_check.png"), new_mask)
 
 
-    # # JSON 파일로 저장할 데이터 생성
-    # edge_data = []
-    # for id, pixels in components.items():
-    #     edge_data.append({"id": id, "caption": "", "pixels": pixels, "move_up":0, "move_down":0})
+    # JSON 파일로 저장할 데이터 생성
+    edge_data = []
+    for id, pixels in components.items():
+        edge_data.append({"id": id, "caption": "", "pixels": pixels, "move_up":0, "move_down":0})
 
-    # # JSON 파일로 저장
-    # with open(os.path.join(json_file_path, result_name+".json"), "w") as file:
-    #     json.dump(edge_data, file, indent=4)
+    # JSON 파일로 저장
+    with open(os.path.join(json_file_path ,result_name+".json"), "w") as file:
+        json.dump(edge_data, file, indent=4)
