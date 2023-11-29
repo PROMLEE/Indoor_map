@@ -16,7 +16,7 @@ def run_way():
         data["endId"],
         data["elev"],
     )
-    return jsonify({"result": response})
+    return "길 탐색(find_way) 완료!!"
 
 
 @app.route("/mask/<filename>")
