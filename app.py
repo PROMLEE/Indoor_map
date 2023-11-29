@@ -5,7 +5,7 @@ from scripts.find_way import find_way
 app = Flask(__name__)
 
 
-@app.route("/way", methods=["POST"])
+@app.route("/findway", methods=["POST"])
 def run_way():
     data = request.json
     response = find_way(

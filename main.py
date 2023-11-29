@@ -1,7 +1,7 @@
 import requests
 
-# url = "http://54.180.106.175:5000/way"
-url = "http://127.0.0.1:5000/way"
+url = "http://54.180.106.175:5000/way"
+# url = "http://127.0.0.1:5000/way"
 data = {
     "building_name": "CAU310",
     "startFloor": 2,
