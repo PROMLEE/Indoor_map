@@ -4,6 +4,7 @@ import numpy as np
 import math
 import json
 
+
 def is_boundary_pixel(x, y, mask, height, width):
     if x == 0 or x == width - 1 or y == 0 or y == height - 1:
         return True
@@ -21,11 +22,16 @@ def is_boundary_pixel(x, y, mask, height, width):
 
     return not all(np.array_equal(val, white) for val in neighbors)
 
+
 def calculate_distance(x1, y1, x2, y2):
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
+
 def is_within_distance(point1, point2, max_distance):
-    return calculate_distance(point1[0], point1[1], point2[0], point2[1]) <= max_distance
+    return (
+        calculate_distance(point1[0], point1[1], point2[0], point2[1]) <= max_distance
+    )
+
 
 def get_diagonal_neighbors(x, y, labels, current_label):
     neighbors = []
@@ -35,6 +41,7 @@ def get_diagonal_neighbors(x, y, labels, current_label):
             if 0 <= nx < width and 0 <= ny < height and labels[ny, nx] != current_label:
                 neighbors.append((nx, ny))
     return neighbors
+
 
 def draw_line(img, start, end, components):
     x0, y0 = start
@@ -57,13 +64,19 @@ def draw_line(img, start, end, components):
         elif e2 <= dx:
             err += dx
             y0 += sy
+
+
 blue = np.array([255, 0, 0])
 white = np.array([255, 255, 255])
 # 이미지 불러오기
 building_name = "CAU310"
-mask_file_path = os.path.join("sources",building_name,"masks")
-file_list = [f for f in os.listdir(mask_file_path) if os.path.isfile(os.path.join(mask_file_path, f))]
-json_file_path = os.path.join("result",building_name,"etc")
+mask_file_path = os.path.join("sources", building_name, "masks")
+file_list = [
+    f
+    for f in os.listdir(mask_file_path)
+    if os.path.isfile(os.path.join(mask_file_path, f))
+]
+json_file_path = os.path.join("result", building_name, "etc")
 if not os.path.exists(json_file_path):
     os.makedirs(json_file_path, exist_ok=True)
 print(file_list)
@@ -76,7 +89,9 @@ for f in file_list[:3]:
     new_mask = np.zeros((height, width), dtype=np.uint8)
     for y in range(height):
         for x in range(width):
-            if np.array_equal(mask[y, x], white) and is_boundary_pixel(x, y, mask, height, width):
+            if np.array_equal(mask[y, x], white) and is_boundary_pixel(
+                x, y, mask, height, width
+            ):
                 new_mask[y, x] = 255
             elif np.array_equal(mask[y, x], blue):
                 new_mask[y, x] = 255
@@ -91,7 +106,9 @@ for f in file_list[:3]:
     contours = {}
     for label in range(1, num_labels):
         component_mask = np.uint8(labels == label)
-        contour, _ = cv2.findContours(component_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contour, _ = cv2.findContours(
+            component_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
         contours[label] = contour[0]
 
     components = {}
@@ -120,12 +137,13 @@ for f in file_list[:3]:
     # 이미지 저장
     # cv2.imwrite(os.path.join("result\CAU310\mask result", result_name+"_check.png"), new_mask)
 
-
     # JSON 파일로 저장할 데이터 생성
     edge_data = []
     for id, pixels in components.items():
-        edge_data.append({"id": id, "caption": "", "pixels": pixels, "move_up":0, "move_down":0})
+        edge_data.append(
+            {"id": id, "caption": "", "pixels": pixels, "move_up": 0, "move_down": 0}
+        )
 
     # JSON 파일로 저장
-    with open(os.path.join(json_file_path ,result_name+".json"), "w") as file:
+    with open(os.path.join(json_file_path, result_name + ".json"), "w") as file:
         json.dump(edge_data, file, indent=4)

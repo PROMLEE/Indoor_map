@@ -1,15 +1,18 @@
 import requests
 
-url = 'http://54.180.106.175/run-way'
+# url = "http://54.180.106.175:5000/way"
+url = "http://127.0.0.1:5000/way"
 data = {
-    'value1': '값1',
-    'value2': '값2',
-    'value3': '값3',
-    'value4': '값4'
+    "building_name": "CAU310",
+    "startFloor": 2,
+    "startId": 5,
+    "endFloor": 5,
+    "endId": 40,
+    "elev": 1,
 }
 
 response = requests.post(url, json=data)
 if response.status_code == 200:
-    print("Response from server:", response.json())
+    print("Response from server")
 else:
     print("Error in API call")
