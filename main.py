@@ -1,6 +1,6 @@
 import requests
 
-url = "http://54.180.106.175:5000/way"
+url = "http://54.180.108.110:5000/findway"
 # url = "http://127.0.0.1:5000/way"
 data = {
     "building_name": "CAU310",
@@ -8,7 +8,7 @@ data = {
     "startId": 5,
     "endFloor": 5,
     "endId": 40,
-    "elev": 1,
+    "elev": 0,
 }
 
 response = requests.post(url, json=data)
