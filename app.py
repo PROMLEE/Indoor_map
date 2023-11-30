@@ -29,6 +29,16 @@ def get_way(filename):
     return send_from_directory(f"result/{filename[:-3]}/way", f"{filename}.png")
 
 
+@app.route("/source/<filename>")
+def get_source(filename):
+    return send_from_directory(f"sources/{filename[:-3]}/images", f"{filename}.png")
+
+
+@app.route("/originalmask/<filename>")
+def get_originalmask(filename):
+    return send_from_directory(f"sources/{filename[:-3]}/masks", f"{filename}.png")
+
+
 @app.route("/upload/<filename>", methods=["POST"])
 def upload_file(filename):
     UPLOAD_FOLDER = f"./sources/{filename[:-3]}/images"
