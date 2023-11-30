@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, send_from_directory
 from scripts.find_way import find_way
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/findway", methods=["POST"])
 def run_way():
     data = request.json
-    response = find_way(
+    find_way(
         data["building_name"],
         data["startFloor"],
         data["startId"],
@@ -29,9 +29,11 @@ def get_way(filename):
     return send_from_directory(f"result/{filename[:-3]}/way", f"{filename}.png")
 
 
-@app.route("/upload", methods=["POST"])
-def upload_file():
-    UPLOAD_FOLDER = f"sources/{request.building_name}/images"
+@app.route("/upload/<filename>", methods=["POST"])
+def upload_file(filename):
+    UPLOAD_FOLDER = f"./sources/{filename[:-3]}/images"
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     if "file" not in request.files:
         return "No file part"
@@ -39,8 +41,7 @@ def upload_file():
     if file.filename == "":
         return "No selected file"
     if file:
-        filename = file.filename
-        file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+        file.save(os.path.join(app.config["UPLOAD_FOLDER"], f"{filename}.png"))
         return "File successfully uploaded"
 
 
