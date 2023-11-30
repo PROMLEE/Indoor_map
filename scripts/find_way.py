@@ -170,3 +170,13 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
         )
         cv2.imwrite(mask_file_path, mask)
         print(building_name + "_{:02d}".format(floor) + ".png 생성 완료!")
+
+
+building_name = "CAU310"
+startFloor = 2
+startId = 23
+endFloor = 7
+endId = 50
+elev = 0
+if __name__ == "__main__":
+    find_way(building_name, startFloor, startId, endFloor, endId, elev)
