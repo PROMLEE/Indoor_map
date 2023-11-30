@@ -64,9 +64,9 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
             sum_x, sum_y, div = 0, 0, 0
             id = group["id"]
             caption = group["caption"]
-            if elev and caption == "엘리베이터":
+            if elev == 1 and caption == "엘리베이터":
                 mover.append(id)
-            elif not elev and caption == "계단":
+            elif elev == 0 and caption == "계단":
                 mover.append(id)
             for pixel in group["pixels"]:
                 x, y = pixel["x"], pixel["y"]
