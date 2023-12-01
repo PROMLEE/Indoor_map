@@ -60,7 +60,7 @@ export default function Login() {
       await axios.get(url).then((response) => {
         dispatch(getdata(response.data));
       });
-      // console.log(data);
+      // console.log(Data);
     } catch (err) {
       console.log("에러 내역", err);
       dispatch(getdata([{ id: 404, caption: "404 Error" }]));
@@ -121,6 +121,11 @@ export default function Login() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const buttonClick = () => {
+    console.log(Data);
+  };
+
   return (
     <div>
       <Forms ref={ref}>
@@ -174,7 +179,9 @@ export default function Login() {
             </Dropdownlist>
           )}
         </Form>
-        <Button>{Loading ? "Loading" : "변경사항 적용"}</Button>
+        <Button onClick={buttonClick}>
+          {Loading ? "Loading" : "변경사항 적용"}
+        </Button>
       </Forms>
       <Appform>
         {Data.map((item) => {
