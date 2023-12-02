@@ -2,28 +2,23 @@ import json
 import os
 from flask import Flask, jsonify, request, send_from_directory, make_response
 from scripts.find_way import find_way
+from scripts.edit_json import update_caption, create_mask
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
 
+@app.route("/editstore/<buildingname>", methods=["POST"])
+def edit_store(buildingname):
+    data = request.json
+    update_caption(data, buildingname)
+    create_mask(buildingname)
+    return "json, mask update 완료"
+
+
 @app.route("/findway", methods=["POST"])
 def run_way():
-    data = request.json
-    find_way(
-        data["building_name"],
-        data["startFloor"],
-        data["startId"],
-        data["endFloor"],
-        data["endId"],
-        data["elev"],
-    )
-    return "길 탐색(find_way) 완료!!"
-
-
-@app.route("/editstore", methods=["POST"])
-def edit_store():
     data = request.json
     find_way(
         data["building_name"],
@@ -66,6 +61,13 @@ def get_source(filename):
         return send_from_directory("sources", "404err.png")
 
 
+@app.route("/loading")
+def loading():
+    img_path = "sources"
+    fname = "loading.png"
+    return send_from_directory(img_path, fname)
+
+
 @app.route("/json/<filename>")
 def filtered_json(filename):
     img_path = f"result/{filename[:-3]}/data"
@@ -74,7 +76,6 @@ def filtered_json(filename):
         data = json.load(file)
     filtered_data = []
     for item in data:
-        # if item["id"] not in [-2, 1]:
         filtered_data.append({"id": item["id"], "caption": item["caption"]})
     return jsonify(filtered_data)
 
