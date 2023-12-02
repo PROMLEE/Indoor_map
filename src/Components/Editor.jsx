@@ -20,7 +20,7 @@ export default function Login() {
   const ref = useRef(null);
   
   const dispatch = useDispatch();
-  var api = "http://127.0.0.1:5000/";
+  var api = "http://54.180.108.110:5000/";
   var url = `${api}/json/${Buildingname}_${Floor}`;
   var buildingsApi = `${api}/buildinglist`;
   var floorsApi = `${api}/dir/${Buildingname}`;
