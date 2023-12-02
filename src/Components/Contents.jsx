@@ -1,47 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { getdata } from "../Redux/state";
+import { useDispatch } from "react-redux";
+import { updateDataItem } from "../Redux/state";
 
 export default function Contents({ id, caption }) {
-  const Data = useSelector((state) => state.state.data);
-  const [newCaption, setnewCaption] = useState(caption);
-  const [value, setnewvalue] = useState(caption);
+  // const Data = useSelector((state) => state.state.data);
+  const backupcaption = caption;
+  const [newCaption, setnewCaption] = useState();
+  const [value, setnewvalue] = useState();
 
   const dispatch = useDispatch();
   useEffect(() => {
-    setnewvalue("");
-  }, []);
+    setnewvalue(caption);
+    setnewCaption();
+  }, [caption]);
 
   const updateItem = () => {
-    const updatedItems = Data.map((item) => {
-      if (item.id === id) {
-        return { ...item, caption: newCaption };
-      }
-      return item;
-    });
-    dispatch(getdata(updatedItems));
+    if (newCaption !== "") dispatch(updateDataItem(id, newCaption));
+    else dispatch(updateDataItem(id, backupcaption));
   };
-  const onSelectItem = (key) => {
-    setnewCaption(key);
-  };
-
-  useEffect(() => {
-    console.log(Data);
-  }, [Data]);
 
   return (
     <Wrapper>
       <Info>
         <Namebox>{id}: </Namebox>
         <Date
-          placeholder={caption}
-          onfo
+          placeholder={value || ""}
+          value={newCaption || ""}
           onChange={(e) => {
-            onSelectItem(e.target.value);
-            setnewvalue(e.target.value);
-            updateItem();
+            setnewCaption(e.target.value);
           }}
+          onBlur={updateItem}
         />
       </Info>
     </Wrapper>

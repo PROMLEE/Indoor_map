@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import Contents from "./Contents";
 import { useSelector, useDispatch } from "react-redux";
-import { getfloor, getbuildingname, getdata } from "../Redux/state";
+import { getfloor, getbuildingname, getdata, getnewdata } from "../Redux/state";
 
 export default function Login() {
   const [Loading, setLoading] = useState(false);
@@ -15,6 +15,7 @@ export default function Login() {
   const [isDropdownOpenF, setIsDropdownOpenF] = useState(false);
 
   const Data = useSelector((state) => state.state.data);
+  const newData = useSelector((state) => state.state.newdata);
   const Floor = useSelector((state) => state.state.floor);
   const Buildingname = useSelector((state) => state.state.buildingname);
   const ref = useRef(null);
@@ -59,8 +60,8 @@ export default function Login() {
       setLoading(true);
       await axios.get(url).then((response) => {
         dispatch(getdata(response.data));
+        dispatch(getnewdata(response.data));
       });
-      // console.log(Data);
     } catch (err) {
       console.log("에러 내역", err);
       dispatch(getdata([{ id: 404, caption: "404 Error" }]));
@@ -124,6 +125,7 @@ export default function Login() {
 
   const buttonClick = () => {
     console.log(Data);
+    console.log(newData);
   };
 
   return (
