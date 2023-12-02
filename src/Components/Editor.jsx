@@ -13,20 +13,34 @@ export default function Login() {
   const [filteredOptionsF, setFilteredOptionsF] = useState([]);
   const [isDropdownOpenB, setIsDropdownOpenB] = useState(false);
   const [isDropdownOpenF, setIsDropdownOpenF] = useState(false);
-
   const Data = useSelector((state) => state.state.data);
   const newData = useSelector((state) => state.state.newdata);
   const Floor = useSelector((state) => state.state.floor);
   const Buildingname = useSelector((state) => state.state.buildingname);
   const ref = useRef(null);
-
+  
   const dispatch = useDispatch();
   var api = "http://127.0.0.1:5000/";
   var url = `${api}/json/${Buildingname}_${Floor}`;
   var buildingsApi = `${api}/buildinglist`;
   var floorsApi = `${api}/dir/${Buildingname}`;
-  var maskImg = `${api}/mask/${Buildingname}_${Floor}`;
   var realImg = `${api}/source/${Buildingname}_${Floor}`;
+  var updateJson = `${api}/editstore/${Buildingname}_${Floor}`;
+  const [maskImg, setmaskImg] = useState();
+
+  const changeMaskfile = useCallback((a) => {
+    console.log(a);
+    if (a === 1){
+    setmaskImg(`${api}/loading`);
+    }
+    else{
+      setmaskImg(`${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`);
+    }
+  }, []);
+
+  useEffect(()=>{
+    changeMaskfile(0);
+  },[Buildingname, Floor])
 
   const getBuildingnames = useCallback(async () => {
     await axios.get(buildingsApi).then((response) => {
@@ -122,10 +136,22 @@ export default function Login() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const buttonClick = () => {
-    console.log(Data);
-    console.log(newData);
+  const buttonClick = async () => {
+    changeMaskfile(1);
+    try {
+      setLoading(true);
+      await axios.post(updateJson,{newData}).then((response) => {
+        console.log(response.data);
+      });
+    } catch (err) {
+      console.log("에러 내역", err);
+      // setFloors(["404 err"]);
+    }
+    setTimeout(()=>{
+      setLoading(false);
+      // setmaskImg(setmaskImg(`${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`));
+      changeMaskfile(0);
+    }, 1000)
   };
 
   return (
