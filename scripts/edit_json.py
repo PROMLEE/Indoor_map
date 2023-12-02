@@ -12,13 +12,14 @@ def save_json(filename, data):
         json.dump(data, file, indent=4)
 
 
-def update_caption(data, newdata):
-    print(len(data))
+def update_caption( newdata, buildingname, floor):
+    file_path=f"results/{buildingname}/data/{buildingname}_{floor}"
+    data=load_json(file_path)
     for i in range(len(data)):
-        # for item, newitem in data, newdata:
         if data[i]["id"] == newdata[i]["id"]:
             data[i]["caption"] = newdata[i]["caption"]
             return True
+    save_json(file_path, newdata)
     return False
 
 
