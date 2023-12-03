@@ -18,29 +18,31 @@ export default function Login() {
   const Floor = useSelector((state) => state.state.floor);
   const Buildingname = useSelector((state) => state.state.buildingname);
   const ref = useRef(null);
-  
+
   const dispatch = useDispatch();
-  var api = "http://54.180.108.110:5000/";
+  var api = "http://3.34.90.189:5000/";
   var url = `${api}/json/${Buildingname}_${Floor}`;
   var buildingsApi = `${api}/buildinglist`;
   var floorsApi = `${api}/dir/${Buildingname}`;
   var realImg = `${api}/source/${Buildingname}_${Floor}`;
   var updateJson = `${api}/editstore/${Buildingname}_${Floor}`;
-  const [maskImg, setmaskImg] = useState();
+  var maskImg = `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`;
+  // const [maskImg, setmaskImg] = useState();
 
-  const changeMaskfile = useCallback((a) => {
-    console.log(a);
-    if (a === 1){
-    setmaskImg(`${api}/loading`);
-    }
-    else{
-      setmaskImg(`${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`);
-    }
-  }, []);
+  // const changeMaskfile = useCallback((a) => {
+  //   if (a === 1) {
+  //     setmaskImg(`${api}/loading`);
+  //   } else {
+  //     console.log(Buildingname, Floor);
+  //     setmaskImg(
+  //       `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`
+  //     );
+  //   }
+  // }, []);
 
-  useEffect(()=>{
-    changeMaskfile(0);
-  },[Buildingname, Floor])
+  // useEffect(() => {
+  //   changeMaskfile(0);
+  // }, [Buildingname, Floor]);
 
   const getBuildingnames = useCallback(async () => {
     await axios.get(buildingsApi).then((response) => {
@@ -104,12 +106,12 @@ export default function Login() {
     filterOptionsF("");
   };
   const handleOptionClickBuilding = (option) => {
-    dispatch(getbuildingname(option)); // 선택된 옵션으로 입력값 변경
-    setIsDropdownOpenB(false); // 드롭다운 닫기
+    dispatch(getbuildingname(option));
+    setIsDropdownOpenB(false);
   };
   const handleOptionClickFloor = (option) => {
-    dispatch(getfloor(option)); // 선택된 옵션으로 입력값 변경
-    setIsDropdownOpenB(false); // 드롭다운 닫기
+    dispatch(getfloor(option));
+    setIsDropdownOpenB(false);
   };
   const filterOptionsB = (input) => {
     const filtered = Buildingnames.filter((option) =>
@@ -137,21 +139,18 @@ export default function Login() {
     };
   }, []);
   const buttonClick = async () => {
-    changeMaskfile(1);
+    // changeMaskfile(1);
     try {
       setLoading(true);
-      await axios.post(updateJson,{newData}).then((response) => {
+      maskImg = `${api}/loading`;
+      await axios.post(updateJson, { newData }).then((response) => {
         console.log(response.data);
       });
     } catch (err) {
       console.log("에러 내역", err);
-      // setFloors(["404 err"]);
     }
-    setTimeout(()=>{
-      setLoading(false);
-      // setmaskImg(setmaskImg(`${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`));
-      changeMaskfile(0);
-    }, 1000)
+    setLoading(false);
+    maskImg = `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`;
   };
 
   return (
