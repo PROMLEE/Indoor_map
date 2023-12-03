@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { updateDataItem } from "../Redux/state";
 
 export default function Contents({ id, caption }) {
-  // const Data = useSelector((state) => state.state.data);
   const backupcaption = caption;
   const [newCaption, setnewCaption] = useState();
   const [value, setnewvalue] = useState();
@@ -46,6 +45,7 @@ const Info = styled.div`
   height: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 const Namebox = styled.div`
   font-size: 15px;

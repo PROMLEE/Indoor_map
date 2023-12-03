@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import Contents from "./Contents";
+import EditCaption from "./EditCaption";
+import Editupdown from "./Editupdown";
 import { useSelector, useDispatch } from "react-redux";
-import { getfloor, getbuildingname, getdata, getnewdata } from "../Redux/state";
+import {
+  getfloor,
+  getbuildingname,
+  getdata,
+  getnewdata,
+  getdfloor,
+  getufloor,
+} from "../Redux/state";
 
 export default function Login() {
   const [Loading, setLoading] = useState(false);
@@ -13,20 +22,18 @@ export default function Login() {
   const [filteredOptionsF, setFilteredOptionsF] = useState([]);
   const [isDropdownOpenB, setIsDropdownOpenB] = useState(false);
   const [isDropdownOpenF, setIsDropdownOpenF] = useState(false);
-  const Data = useSelector((state) => state.state.data);
   const newData = useSelector((state) => state.state.newdata);
   const Floor = useSelector((state) => state.state.floor);
+  const api = useSelector((state) => state.state.url);
   const Buildingname = useSelector((state) => state.state.buildingname);
   const ref = useRef(null);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  var api = "https://indoormap.store";
   var url = `${api}/json/${Buildingname}_${Floor}`;
   var buildingsApi = `${api}/buildinglist`;
   var floorsApi = `${api}/dir/${Buildingname}`;
-  var realImg = `${api}/source/${Buildingname}_${Floor}`;
   var updateJson = `${api}/editstore/${Buildingname}_${Floor}`;
-  var maskImg = `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`;
 
   const getBuildingnames = useCallback(async () => {
     await axios.get(buildingsApi).then((response) => {
@@ -71,7 +78,28 @@ export default function Login() {
 
   useEffect(() => {
     getstore();
-  }, [Floor, getstore]);
+    // var Floor_;
+    // if (Floor[0] === "B") {
+    //   Floor_ = -parseInt(Floor[1]);
+    // } else {
+    //   Floor_ = parseInt(Floor);
+    // }
+    // // console.log(Floor_);
+    // var n_floor, p_floor;
+    // if (Floor_ === 1) {
+    //   n_floor = 2;
+    //   p_floor = -1;
+    // } else if (Floor_ === -1) {
+    //   n_floor = 1;
+    //   p_floor = -2;
+    // } else {
+    //   n_floor = Floor_ + 1;
+    //   p_floor = Floor_ - 1;
+    // }
+    // // console.log(n_floor, p_floor);
+    // dispatch(getufloor(n_floor.toString().padStart(2, "0").replace("-", "B")));
+    // dispatch(getdfloor(p_floor.toString().padStart(2, "0").replace("-", "B")));
+  }, [Floor]);
 
   const handleInputChangeB = (event) => {
     filterOptionsB(event.target.value);
@@ -123,10 +151,8 @@ export default function Login() {
     };
   }, []);
   const buttonClick = async () => {
-    // changeMaskfile(1);
     try {
       setLoading(true);
-      maskImg = `${api}/loading`;
       await axios.post(updateJson, { newData }).then((response) => {
         console.log(response.data);
       });
@@ -134,9 +160,13 @@ export default function Login() {
       console.log("에러 내역", err);
     }
     setLoading(false);
-    maskImg = `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`;
   };
-
+  const toUpdown = () => {
+    navigate(`/editupdown`);
+  };
+  const toCaption = () => {
+    navigate(`/`);
+  };
   return (
     <div>
       <Forms ref={ref}>
@@ -144,7 +174,7 @@ export default function Login() {
         <Form>
           <Inputform
             type="text"
-            value={Buildingname}
+            value={Buildingname || ""}
             onChange={handleInputChangeB}
             onClick={handleClickB}
             placeholder="건물명을 검색하세요"
@@ -169,7 +199,7 @@ export default function Login() {
         <Form>
           <Inputform
             type="text"
-            value={Floor}
+            value={Floor || ""}
             onChange={handleInputChangeF}
             onClick={handleClickF}
             placeholder="층을 선택하세요"
@@ -190,25 +220,20 @@ export default function Login() {
             </Dropdownlist>
           )}
         </Form>
+        <Routbutton onClick={toCaption}>
+          {Loading ? "Loading" : "캡션 채우기"}
+        </Routbutton>
+        <Routbutton onClick={toUpdown}>
+          {Loading ? "Loading" : "엘리베이터,\n 계단 연결"}
+        </Routbutton>
         <Button onClick={buttonClick}>
           {Loading ? "Loading" : "변경사항 적용"}
         </Button>
       </Forms>
-      <Appform>
-        {Data.map((item) => {
-          if (item.id !== -2 && item.id !== 1) {
-            return (
-              <Contents id={item.id} caption={item.caption} key={item.id} />
-            );
-          } else {
-            return null;
-          }
-        })}
-      </Appform>
-      <Images>
-        <Maskimg src={maskImg} />
-        <Maskimg src={realImg} />
-      </Images>
+      <Routes>
+        <Route path="/*" element={<EditCaption />} />
+        <Route path="/editupdown" element={<Editupdown />} />
+      </Routes>
     </div>
   );
 }
@@ -244,19 +269,15 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
-const Appform = styled.div`
-  background-color: #bbbbbb29;
-  width: 60%;
-  overflow: scroll;
-  height: 200px;
-  border-radius: 5%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
-  padding-left: 50px;
-  gap: 20px;
-  border: black;
+const Routbutton = styled.button`
+  width: 70px;
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 20px;
+  font-size: 10px;
+  background-color: rgb(105, 64, 255);
+  color: white;
+  cursor: pointer;
 `;
 const Dropdownlist = styled.ul`
   position: absolute;
@@ -280,16 +301,4 @@ const Dropdownli = styled.li`
   &:hover {
     background-color: #f1f1f1;
   }
-`;
-const Images = styled.div`
-  display: flex;
-  margin-top: 40px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`;
-const Maskimg = styled.img`
-  align-items: center;
-  height: 800px;
-  width: 800px;
 `;
