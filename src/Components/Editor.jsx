@@ -20,7 +20,7 @@ export default function Login() {
   const ref = useRef(null);
 
   const dispatch = useDispatch();
-  var api = "http://3.34.90.189:5000/";
+  var api = "https://indoormap.store";
   var url = `${api}/json/${Buildingname}_${Floor}`;
   var buildingsApi = `${api}/buildinglist`;
   var floorsApi = `${api}/dir/${Buildingname}`;
