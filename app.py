@@ -77,11 +77,42 @@ def loading():
 def filtered_json(filename):
     img_path = f"result/{filename[:-3]}/data"
     fname = f"{filename}.json"
+    if not os.path.exists(os.path.join(img_path, fname)):
+        return jsonify(
+            {"id": 404, "caption": "404Err", "move_up": 404, "move_down": 404}
+        )
     with open(os.path.join(img_path, fname), "r") as file:
         data = json.load(file)
     filtered_data = []
     for item in data:
-        filtered_data.append({"id": item["id"], "caption": item["caption"]})
+        filtered_data.append(
+            {
+                "id": item["id"],
+                "caption": item["caption"],
+                "move_up": item["move_up"],
+                "move_down": item["move_down"],
+            }
+        )
+    return jsonify(filtered_data)
+
+
+@app.route("/updown/<filename>")
+def updown(filename):
+    img_path = f"result/{filename[:-3]}/data"
+    fname = f"{filename}.json"
+    with open(os.path.join(img_path, fname), "r") as file:
+        data = json.load(file)
+    filtered_data = []
+    for item in data:
+        # if item["caption"] in ["엘리베이터", "계단", "elevator", "stair"]:
+        filtered_data.append(
+            {
+                "id": item["id"],
+                "caption": item["caption"],
+                "move_up": item["move_up"],
+                "move_down": item["move_down"],
+            }
+        )
     return jsonify(filtered_data)
 
 
