@@ -43,7 +43,7 @@ def get_mask(filename):
 
 @app.route("/healthcheck")
 def healthcheck():
-    return True
+    return "ok"
 
 
 @app.route("/way/<filename>")
