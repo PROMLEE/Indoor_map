@@ -41,6 +41,11 @@ def get_mask(filename):
         return send_from_directory("sources", "404err.png")
 
 
+@app.route("/healthcheck")
+def healthcheck():
+    return True
+
+
 @app.route("/way/<filename>")
 def get_way(filename):
     img_path = f"result/{filename[:-3]}/way"
@@ -119,4 +124,4 @@ def upload_file(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
