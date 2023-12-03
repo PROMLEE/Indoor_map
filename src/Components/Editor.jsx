@@ -27,22 +27,6 @@ export default function Login() {
   var realImg = `${api}/source/${Buildingname}_${Floor}`;
   var updateJson = `${api}/editstore/${Buildingname}_${Floor}`;
   var maskImg = `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`;
-  // const [maskImg, setmaskImg] = useState();
-
-  // const changeMaskfile = useCallback((a) => {
-  //   if (a === 1) {
-  //     setmaskImg(`${api}/loading`);
-  //   } else {
-  //     console.log(Buildingname, Floor);
-  //     setmaskImg(
-  //       `${api}/mask/${Buildingname}_${Floor}?time=${new Date().getTime()}`
-  //     );
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   changeMaskfile(0);
-  // }, [Buildingname, Floor]);
 
   const getBuildingnames = useCallback(async () => {
     await axios.get(buildingsApi).then((response) => {
@@ -212,7 +196,13 @@ export default function Login() {
       </Forms>
       <Appform>
         {Data.map((item) => {
-          return <Contents id={item.id} caption={item.caption} key={item.id} />;
+          if (item.id !== -2 && item.id !== 1) {
+            return (
+              <Contents id={item.id} caption={item.caption} key={item.id} />
+            );
+          } else {
+            return null;
+          }
         })}
       </Appform>
       <Images>
