@@ -4,8 +4,13 @@ import { useDispatch } from "react-redux";
 import { updateDataItem } from "../Redux/state";
 
 export default function Contents({ id, caption, move_up, move_down }) {
-  const backupmoveup = move_up;
-  const backupmovedown = move_down;
+  var backupmoveup = 0;
+  var backupmovedown = 0;
+  if(move_up){
+    backupmoveup = move_up;
+  }if(move_down){
+    backupmovedown = move_down;
+  }
   const [newup, setnewup] = useState();
   const [newdown, setnewdown] = useState();
   const [upvalue, setupvalue] = useState();
@@ -13,6 +18,7 @@ export default function Contents({ id, caption, move_up, move_down }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(move_up, move_down)
     setupvalue(move_up);
     setdownvalue(move_down);
     setnewup();
@@ -20,18 +26,26 @@ export default function Contents({ id, caption, move_up, move_down }) {
   }, [move_up, move_down]);
 
   const updateItem = () => {
-    if (newup !== "" || newdown !== "")
-      dispatch(updateDataItem(id, newup, newdown));
-    else dispatch(updateDataItem(id, backupmoveup, backupmovedown));
+    console.log(newup, newdown)
+
+    if (newup !== undefined && newdown !== undefined )
+      dispatch(updateDataItem(id, caption, newup, newdown));
+    else if( newup !== undefined){
+      dispatch(updateDataItem(id, caption, newup, backupmovedown));
+    }
+    else if(newdown !== undefined){
+      dispatch(updateDataItem(id, caption, backupmoveup, newdown));
+    }
+    else dispatch(updateDataItem(id,caption,  backupmoveup, backupmovedown));
   };
 
   return (
     <Wrapper>
       <Info>
         <Namebox>{id} </Namebox>
-        <Namebox>{caption}: </Namebox>
+        <Nameboxcap>{caption}: </Nameboxcap>
         <Date
-          placeholder={upvalue || ""}
+          placeholder={upvalue || "0"}
           value={newup || ""}
           onChange={(e) => {
             setnewup(e.target.value);
@@ -39,7 +53,7 @@ export default function Contents({ id, caption, move_up, move_down }) {
           onBlur={updateItem}
         />
         <Date
-          placeholder={downvalue || ""}
+          placeholder={downvalue || "0"}
           value={newdown || ""}
           onChange={(e) => {
             setnewdown(e.target.value);
@@ -65,7 +79,14 @@ const Info = styled.div`
 const Namebox = styled.div`
   font-size: 15px;
   padding-left: 20px;
-  width: 50px;
+  width: 20px;
+  font-weight: bold;
+  font-family: "굴림";
+`;
+const Nameboxcap = styled.div`
+  font-size: 15px;
+  padding-left: 20px;
+  width: 100px;
   font-weight: bold;
   font-family: "굴림";
 `;
