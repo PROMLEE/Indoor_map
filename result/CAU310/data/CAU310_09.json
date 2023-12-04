@@ -34877,7 +34877,7 @@
     },
     {
         "id": 2,
-        "caption": "2",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 157,
@@ -35732,8 +35732,8 @@
                 "y": 191
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "2",
+        "move_down": "2"
     },
     {
         "id": 3,
