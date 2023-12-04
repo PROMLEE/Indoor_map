@@ -100,7 +100,7 @@ export default function Login() {
     // console.log(n_floor, p_floor);
     dispatch(getufloor(n_floor.toString().padStart(2, "0").replace("-", "B")));
     dispatch(getdfloor(p_floor.toString().padStart(2, "0").replace("-", "B")));
-  }, [Floor]);
+  }, [Floor, dispatch, getstore]);
 
   const handleInputChangeB = (event) => {
     filterOptionsB(event.target.value);
@@ -164,12 +164,10 @@ export default function Login() {
     setLoading(false);
   };
   const toUpdown = () => {
-    
     getstore();
     navigate(`/editupdown`);
   };
   const toCaption = () => {
-    
     getstore();
     navigate(`/`);
   };
