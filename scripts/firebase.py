@@ -51,7 +51,7 @@ class UploadJsonFileToFirestore:
 collectionname = "buildings"
 
 
-floor = "07"
+floor = "B6"
 
 
 def set(item):
@@ -70,6 +70,8 @@ f.close()
 dict = {}
 for item in data:
     # print(item)
+    if item["id"] in [-2, 1]:
+        continue
     dict[str(item["id"])] = item["caption"]
 print(dict)
 set(dict)
