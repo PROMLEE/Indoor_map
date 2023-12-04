@@ -61421,7 +61421,7 @@
     },
     {
         "id": 32,
-        "caption": "\uacc4\ub2e8",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 534,
@@ -97280,7 +97280,7 @@
                 "y": 859
             }
         ],
-        "move_up": 0,
+        "move_up": "73",
         "move_down": 0
     },
     {
