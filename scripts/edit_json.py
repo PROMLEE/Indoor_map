@@ -129,5 +129,5 @@ def update_move_down(data, id):
 # newdata = [{"id": 1, "caption": "ddddd"}]
 # update_caption(data, newdata)
 # print(data)
-building_name = "CAU310_B1"
-create_mask(building_name)
+# building_name = "CAU310_B4"
+# create_mask(building_name)
