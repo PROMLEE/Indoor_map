@@ -35460,8 +35460,8 @@
                 "y": 197
             }
         ],
-        "move_up": "2",
-        "move_down": "2"
+        "move_up": 2,
+        "move_down": 2
     },
     {
         "id": 3,
@@ -71340,8 +71340,8 @@
                 "y": 401
             }
         ],
-        "move_up": "33",
-        "move_down": "33"
+        "move_up": 33,
+        "move_down": 33
     },
     {
         "id": 34,
@@ -72716,8 +72716,8 @@
                 "y": 444
             }
         ],
-        "move_up": "35",
-        "move_down": "35"
+        "move_up": 35,
+        "move_down": 35
     },
     {
         "id": 36,
@@ -74540,8 +74540,8 @@
                 "y": 502
             }
         ],
-        "move_up": "38",
-        "move_down": "38"
+        "move_up": 38,
+        "move_down": 38
     },
     {
         "id": 39,
@@ -75916,8 +75916,8 @@
                 "y": 484
             }
         ],
-        "move_up": "40",
-        "move_down": "40"
+        "move_up": 40,
+        "move_down": 40
     },
     {
         "id": 41,
@@ -77500,8 +77500,8 @@
                 "y": 525
             }
         ],
-        "move_up": "43",
-        "move_down": "43"
+        "move_up": 43,
+        "move_down": 43
     },
     {
         "id": 44,

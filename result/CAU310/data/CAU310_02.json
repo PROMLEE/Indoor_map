@@ -28669,7 +28669,7 @@
             }
         ],
         "move_up": 2,
-        "move_down": "2"
+        "move_down": 2
     },
     {
         "id": 3,
@@ -32849,7 +32849,7 @@
             }
         ],
         "move_up": 21,
-        "move_down": "6"
+        "move_down": 6
     },
     {
         "id": 7,
@@ -35961,7 +35961,7 @@
             }
         ],
         "move_up": 26,
-        "move_down": "11"
+        "move_down": 11
     },
     {
         "id": 12,
@@ -36561,7 +36561,7 @@
             }
         ],
         "move_up": 27,
-        "move_down": "9"
+        "move_down": 9
     },
     {
         "id": 13,
@@ -39081,7 +39081,7 @@
             }
         ],
         "move_up": 32,
-        "move_down": "12"
+        "move_down": 12
     },
     {
         "id": 15,
@@ -47705,7 +47705,7 @@
             }
         ],
         "move_up": 35,
-        "move_down": "13"
+        "move_down": 13
     },
     {
         "id": 21,
@@ -48513,7 +48513,7 @@
             }
         ],
         "move_up": 34,
-        "move_down": "14"
+        "move_down": 14
     },
     {
         "id": 22,
@@ -49057,7 +49057,7 @@
             }
         ],
         "move_up": 40,
-        "move_down": "15"
+        "move_down": 15
     },
     {
         "id": 23,
@@ -56501,7 +56501,7 @@
             }
         ],
         "move_up": 45,
-        "move_down": "18"
+        "move_down": 18
     },
     {
         "id": 29,
@@ -57157,7 +57157,7 @@
             }
         ],
         "move_up": 47,
-        "move_down": "20"
+        "move_down": 20
     },
     {
         "id": 30,
@@ -58493,7 +58493,7 @@
             }
         ],
         "move_up": 49,
-        "move_down": "22"
+        "move_down": 22
     },
     {
         "id": 32,
@@ -59181,7 +59181,7 @@
             }
         ],
         "move_up": 52,
-        "move_down": "23"
+        "move_down": 23
     },
     {
         "id": 33,
@@ -59861,7 +59861,7 @@
             }
         ],
         "move_up": 57,
-        "move_down": "24"
+        "move_down": 24
     },
     {
         "id": 34,

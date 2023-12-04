@@ -36396,8 +36396,8 @@
                 "y": 197
             }
         ],
-        "move_up": "2",
-        "move_down": "2"
+        "move_up": 2,
+        "move_down": 2
     },
     {
         "id": 3,
@@ -67825,7 +67825,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "22"
+        "move_down": 22
     },
     {
         "id": 28,
@@ -72276,8 +72276,8 @@
                 "y": 401
             }
         ],
-        "move_up": "33",
-        "move_down": "30"
+        "move_up": 33,
+        "move_down": 30
     },
     {
         "id": 34,
@@ -73652,8 +73652,8 @@
                 "y": 444
             }
         ],
-        "move_up": "35",
-        "move_down": "34"
+        "move_up": 35,
+        "move_down": 34
     },
     {
         "id": 36,
@@ -75476,8 +75476,8 @@
                 "y": 502
             }
         ],
-        "move_up": "38",
-        "move_down": "37"
+        "move_up": 38,
+        "move_down": 37
     },
     {
         "id": 39,
@@ -76852,8 +76852,8 @@
                 "y": 484
             }
         ],
-        "move_up": "40",
-        "move_down": "38"
+        "move_up": 40,
+        "move_down": 38
     },
     {
         "id": 41,
@@ -78436,8 +78436,8 @@
                 "y": 525
             }
         ],
-        "move_up": "43",
-        "move_down": "42"
+        "move_up": 43,
+        "move_down": 42
     },
     {
         "id": 44,
@@ -83733,7 +83733,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "48"
+        "move_down": 48
     },
     {
         "id": 53,

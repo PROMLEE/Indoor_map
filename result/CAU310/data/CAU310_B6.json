@@ -24560,8 +24560,8 @@
                 "y": 249
             }
         ],
-        "move_up": "3",
-        "move_down": "0"
+        "move_up": 3,
+        "move_down": 0
     },
     {
         "id": 3,
@@ -26296,8 +26296,8 @@
                 "y": 266
             }
         ],
-        "move_up": "6",
-        "move_down": "0"
+        "move_up": 6,
+        "move_down": 0
     },
     {
         "id": 6,
@@ -27072,8 +27072,8 @@
                 "y": 302
             }
         ],
-        "move_up": "7",
-        "move_down": "0"
+        "move_up": 7,
+        "move_down": 0
     },
     {
         "id": 7,
