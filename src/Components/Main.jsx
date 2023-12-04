@@ -68,7 +68,6 @@ export default function Login() {
       await axios.get(url).then((response) => {
         dispatch(getdata(response.data));
         dispatch(getnewdata(response.data));
-        // console.log(response.data)
       });
     } catch (err) {
       console.log("에러 내역", err);
@@ -80,12 +79,8 @@ export default function Login() {
   useEffect(() => {
     getstore();
     var Floor_;
-    if (Floor[0] === "B") {
-      Floor_ = -parseInt(Floor[1]);
-    } else {
-      Floor_ = parseInt(Floor);
-    }
-    // console.log(Floor_);
+    if (Floor[0] === "B") Floor_ = -parseInt(Floor[1]);
+    else Floor_ = parseInt(Floor);
     var n_floor, p_floor;
     if (Floor_ === 1) {
       n_floor = 2;
@@ -97,7 +92,6 @@ export default function Login() {
       n_floor = Floor_ + 1;
       p_floor = Floor_ - 1;
     }
-    // console.log(n_floor, p_floor);
     dispatch(getufloor(n_floor.toString().padStart(2, "0").replace("-", "B")));
     dispatch(getdfloor(p_floor.toString().padStart(2, "0").replace("-", "B")));
   }, [Floor, dispatch, getstore]);

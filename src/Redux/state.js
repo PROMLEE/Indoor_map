@@ -60,7 +60,6 @@ const init = {
   buildingname: "",
   data: [{ id: 404, caption: "404 Error", move_up: 404, move_down: 404 }],
   newdata: [{ id: 404, caption: "404 Error", move_up: 404, move_down: 404 }],
-  // url: "http://127.0.0.1:8080",
   url: "https://indoormap.store",
   ufloor: 0,
   dfloor: 0,

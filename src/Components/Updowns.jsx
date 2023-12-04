@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { updateUpdown } from "../Redux/state";
 
 export default function Contents({ id, caption, move_up, move_down }) {
-  var backupmoveup = 0;
-  var backupmovedown = 0;
-  if (move_up) {
-    backupmoveup = move_up;
-  }
-  if (move_down) {
-    backupmovedown = move_down;
-  }
+  var backupmoveup = move_up;
+  var backupmovedown = move_down;
+  // if (move_up) {
+  //   backupmoveup = move_up;
+  // }
+  // if (move_down) {
+  //   backupmovedown = move_down;
+  // }
   const [newup, setnewup] = useState();
   const [newdown, setnewdown] = useState();
   const [upvalue, setupvalue] = useState();
@@ -19,7 +19,6 @@ export default function Contents({ id, caption, move_up, move_down }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(move_up, move_down);
     setupvalue(move_up);
     setdownvalue(move_down);
     setnewup();
@@ -27,8 +26,6 @@ export default function Contents({ id, caption, move_up, move_down }) {
   }, [move_up, move_down]);
 
   const updateItem = () => {
-    console.log(newup, newdown);
-
     if (newup && newdown) dispatch(updateUpdown(id, caption, newup, newdown));
     else if (newup) {
       dispatch(updateUpdown(id, caption, newup, backupmovedown));
