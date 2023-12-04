@@ -24593,7 +24593,7 @@
     },
     {
         "id": 2,
-        "caption": "2",
+        "caption": "X",
         "pixels": [
             {
                 "x": 701,
@@ -25761,7 +25761,7 @@
     },
     {
         "id": 3,
-        "caption": "3",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 806,
@@ -26489,7 +26489,7 @@
     },
     {
         "id": 4,
-        "caption": "4",
+        "caption": "\uacf5\ub3d9\uad6c",
         "pixels": [
             {
                 "x": 876,
@@ -27493,7 +27493,7 @@
     },
     {
         "id": 5,
-        "caption": "5",
+        "caption": "X",
         "pixels": [
             {
                 "x": 901,
@@ -30465,7 +30465,7 @@
     },
     {
         "id": 6,
-        "caption": "6",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 807,
@@ -31105,7 +31105,7 @@
     },
     {
         "id": 7,
-        "caption": "7",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 821,
@@ -31933,7 +31933,7 @@
     },
     {
         "id": 8,
-        "caption": "8",
+        "caption": "B505\ud638",
         "pixels": [
             {
                 "x": 949,
@@ -36409,7 +36409,7 @@
     },
     {
         "id": 9,
-        "caption": "9",
+        "caption": "B502\ud638",
         "pixels": [
             {
                 "x": 362,
@@ -39297,7 +39297,7 @@
     },
     {
         "id": 10,
-        "caption": "10",
+        "caption": "\uc5ec\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 602,
@@ -40361,7 +40361,7 @@
     },
     {
         "id": 11,
-        "caption": "11",
+        "caption": "\uc7a5\uc560\uc778 \ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 630,
@@ -40921,7 +40921,7 @@
     },
     {
         "id": 12,
-        "caption": "12",
+        "caption": "B501\ud638",
         "pixels": [
             {
                 "x": 302,
@@ -44689,7 +44689,7 @@
     },
     {
         "id": 13,
-        "caption": "13",
+        "caption": "\ub0a8\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 583,
@@ -45693,7 +45693,7 @@
     },
     {
         "id": 14,
-        "caption": "14",
+        "caption": "X",
         "pixels": [
             {
                 "x": 685,
@@ -46889,7 +46889,7 @@
     },
     {
         "id": 15,
-        "caption": "15",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 566,
@@ -47833,7 +47833,7 @@
     },
     {
         "id": 16,
-        "caption": "16",
+        "caption": "B504\ud638",
         "pixels": [
             {
                 "x": 552,
@@ -49213,7 +49213,7 @@
     },
     {
         "id": 17,
-        "caption": "17",
+        "caption": "B503\ud638",
         "pixels": [
             {
                 "x": 544,
