@@ -49,7 +49,7 @@ def create_mask(buildingname):
     mask = np.zeros((height, width, 3), dtype=np.uint8)
     mask = myPutText(
         mask,
-        f"{building_name[:-3]}건물 {floor} 층입니다",
+        f"{buildingname[:-3]}건물 {floor} 층입니다",
         (500, 20),
         30,
         (255, 0, 0),
