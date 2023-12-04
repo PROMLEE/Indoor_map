@@ -44848,8 +44848,8 @@
                 "y": 269
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "2",
+        "move_down": "8"
     },
     {
         "id": 9,
@@ -45529,7 +45529,7 @@
     },
     {
         "id": 10,
-        "caption": "10",
+        "caption": "B126\ud638",
         "pixels": [
             {
                 "x": 540,
@@ -46673,7 +46673,7 @@
     },
     {
         "id": 11,
-        "caption": "11",
+        "caption": "B127\ud638",
         "pixels": [
             {
                 "x": 534,
@@ -47381,7 +47381,7 @@
     },
     {
         "id": 12,
-        "caption": "12",
+        "caption": "\ub0a8\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 497,
@@ -48481,7 +48481,7 @@
     },
     {
         "id": 14,
-        "caption": "14",
+        "caption": "\ub0a8\uc790\uc0ac\uc6cc\uc2e4",
         "pixels": [
             {
                 "x": 524,
@@ -49497,7 +49497,7 @@
     },
     {
         "id": 15,
-        "caption": "15",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 498,
@@ -49872,12 +49872,12 @@
                 "y": 375
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "6",
+        "move_down": "15"
     },
     {
         "id": 16,
-        "caption": "16",
+        "caption": "X",
         "pixels": [
             {
                 "x": 498,
@@ -50564,8 +50564,8 @@
                 "y": 400
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "11",
+        "move_down": "16"
     },
     {
         "id": 18,
@@ -51361,7 +51361,7 @@
     },
     {
         "id": 19,
-        "caption": "19",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 719,
@@ -51860,12 +51860,12 @@
                 "y": 484
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "13",
+        "move_down": "18"
     },
     {
         "id": 20,
-        "caption": "20",
+        "caption": "B112\ud638",
         "pixels": [
             {
                 "x": 470,
@@ -52525,7 +52525,7 @@
     },
     {
         "id": 21,
-        "caption": "21",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 719,
@@ -52912,12 +52912,12 @@
                 "y": 497
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "14",
+        "move_down": "19"
     },
     {
         "id": 22,
-        "caption": "22",
+        "caption": "B112\ud638",
         "pixels": [
             {
                 "x": 469,
@@ -53509,7 +53509,7 @@
     },
     {
         "id": 23,
-        "caption": "23",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 719,
@@ -53928,12 +53928,12 @@
                 "y": 513
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "15",
+        "move_down": "20"
     },
     {
         "id": 24,
-        "caption": "24",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 510,
@@ -54208,12 +54208,12 @@
                 "y": 560
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "16",
+        "move_down": "0"
     },
     {
         "id": 25,
-        "caption": "25",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 496,
@@ -54448,12 +54448,12 @@
                 "y": 555
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "16",
+        "move_down": "0"
     },
     {
         "id": 26,
-        "caption": "26",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 572,
@@ -54964,12 +54964,12 @@
                 "y": 563
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "18",
+        "move_down": "22"
     },
     {
         "id": 27,
-        "caption": "27",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 551,
@@ -55436,12 +55436,12 @@
                 "y": 576
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "20",
+        "move_down": "25"
     },
     {
         "id": 28,
-        "caption": "28",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 509,
@@ -55796,12 +55796,12 @@
                 "y": 612
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "0",
+        "move_down": "29"
     },
     {
         "id": 29,
-        "caption": "29",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 494,
@@ -56148,12 +56148,12 @@
                 "y": 611
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "0",
+        "move_down": "28"
     },
     {
         "id": 30,
-        "caption": "30",
+        "caption": "X",
         "pixels": [
             {
                 "x": 551,
@@ -56633,7 +56633,7 @@
     },
     {
         "id": 31,
-        "caption": "31",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 550,
@@ -57124,8 +57124,8 @@
                 "y": 604
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "22",
+        "move_down": "27"
     },
     {
         "id": 32,
@@ -57609,7 +57609,7 @@
     },
     {
         "id": 33,
-        "caption": "33",
+        "caption": "\ub0a8\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 557,
@@ -58017,7 +58017,7 @@
     },
     {
         "id": 34,
-        "caption": "34",
+        "caption": "\uc5ec\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 541,
@@ -58617,7 +58617,7 @@
     },
     {
         "id": 35,
-        "caption": "35",
+        "caption": "B110\ud638",
         "pixels": [
             {
                 "x": 541,
@@ -66288,8 +66288,8 @@
                 "y": 763
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "0",
+        "move_down": "38"
     },
     {
         "id": 44,

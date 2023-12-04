@@ -33557,7 +33557,7 @@
     },
     {
         "id": 2,
-        "caption": "2",
+        "caption": "B313\ud638",
         "pixels": [
             {
                 "x": 111,
@@ -34461,7 +34461,7 @@
     },
     {
         "id": 3,
-        "caption": "3",
+        "caption": "B312\ud638",
         "pixels": [
             {
                 "x": 189,
@@ -35477,7 +35477,7 @@
     },
     {
         "id": 4,
-        "caption": "4",
+        "caption": "B311\ud638",
         "pixels": [
             {
                 "x": 263,
@@ -36481,7 +36481,7 @@
     },
     {
         "id": 5,
-        "caption": "5",
+        "caption": "B310\ud638",
         "pixels": [
             {
                 "x": 306,
@@ -37481,7 +37481,7 @@
     },
     {
         "id": 6,
-        "caption": "6",
+        "caption": "B309\ud638",
         "pixels": [
             {
                 "x": 363,
@@ -38505,7 +38505,7 @@
     },
     {
         "id": 7,
-        "caption": "7",
+        "caption": "B308\ud638",
         "pixels": [
             {
                 "x": 424,
@@ -39481,7 +39481,7 @@
     },
     {
         "id": 8,
-        "caption": "8",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 476,
@@ -40064,12 +40064,12 @@
                 "y": 269
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "8",
+        "move_down": "0"
     },
     {
         "id": 9,
-        "caption": "9",
+        "caption": "\uc5ec\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 520,
@@ -40745,7 +40745,7 @@
     },
     {
         "id": 10,
-        "caption": "10",
+        "caption": "B319\ud638",
         "pixels": [
             {
                 "x": 540,
@@ -41889,7 +41889,7 @@
     },
     {
         "id": 11,
-        "caption": "11",
+        "caption": "B318\ud638",
         "pixels": [
             {
                 "x": 534,
@@ -42597,7 +42597,7 @@
     },
     {
         "id": 12,
-        "caption": "12",
+        "caption": "\ub0a8\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 497,
@@ -43065,7 +43065,7 @@
     },
     {
         "id": 13,
-        "caption": "13",
+        "caption": "B307\ud638",
         "pixels": [
             {
                 "x": 524,
@@ -44081,7 +44081,7 @@
     },
     {
         "id": 14,
-        "caption": "14",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 498,
@@ -44456,12 +44456,12 @@
                 "y": 375
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "15",
+        "move_down": "0"
     },
     {
         "id": 15,
-        "caption": "15",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 498,
@@ -44884,12 +44884,12 @@
                 "y": 390
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "16",
+        "move_down": "0"
     },
     {
         "id": 16,
-        "caption": "16",
+        "caption": "B306\ud638",
         "pixels": [
             {
                 "x": 532,
@@ -45857,7 +45857,7 @@
     },
     {
         "id": 17,
-        "caption": "17",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 719,
@@ -46356,12 +46356,12 @@
                 "y": 484
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "18",
+        "move_down": "0"
     },
     {
         "id": 18,
-        "caption": "18",
+        "caption": "B305\ud638",
         "pixels": [
             {
                 "x": 487,
@@ -47381,7 +47381,7 @@
     },
     {
         "id": 19,
-        "caption": "19",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 719,
@@ -47768,12 +47768,12 @@
                 "y": 497
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "19",
+        "move_down": "0"
     },
     {
         "id": 20,
-        "caption": "20",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 719,
@@ -48192,12 +48192,12 @@
                 "y": 513
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "20",
+        "move_down": "0"
     },
     {
         "id": 21,
-        "caption": "21",
+        "caption": "B304\ud638",
         "pixels": [
             {
                 "x": 488,
@@ -48965,7 +48965,7 @@
     },
     {
         "id": 22,
-        "caption": "22",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 564,
@@ -49484,12 +49484,12 @@
                 "y": 563
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "22",
+        "move_down": "5"
     },
     {
         "id": 23,
-        "caption": "23",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 551,
@@ -49956,12 +49956,12 @@
                 "y": 576
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "25",
+        "move_down": "8"
     },
     {
         "id": 24,
-        "caption": "24",
+        "caption": "X",
         "pixels": [
             {
                 "x": 551,
@@ -50441,7 +50441,7 @@
     },
     {
         "id": 25,
-        "caption": "25",
+        "caption": "\uc5d8\ub9ac\ubca0\uc774\ud130",
         "pixels": [
             {
                 "x": 550,
@@ -50932,12 +50932,12 @@
                 "y": 604
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "27",
+        "move_down": "10"
     },
     {
         "id": 26,
-        "caption": "26",
+        "caption": "\ub0a8\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 600,
@@ -51225,7 +51225,7 @@
     },
     {
         "id": 27,
-        "caption": "27",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 496,
@@ -51524,12 +51524,12 @@
                 "y": 665
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "28",
+        "move_down": "0"
     },
     {
         "id": 28,
-        "caption": "28",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 512,
@@ -51804,12 +51804,12 @@
                 "y": 664
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "29",
+        "move_down": "0"
     },
     {
         "id": 29,
-        "caption": "29",
+        "caption": "\uc5ec\uc790\ud654\uc7a5\uc2e4",
         "pixels": [
             {
                 "x": 599,
@@ -52145,7 +52145,7 @@
     },
     {
         "id": 30,
-        "caption": "30",
+        "caption": "B303\ud638",
         "pixels": [
             {
                 "x": 601,
@@ -52757,7 +52757,7 @@
     },
     {
         "id": 31,
-        "caption": "31",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 495,
@@ -53112,12 +53112,12 @@
                 "y": 706
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "0",
+        "move_down": "15"
     },
     {
         "id": 32,
-        "caption": "32",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 512,
@@ -53472,12 +53472,12 @@
                 "y": 708
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "0",
+        "move_down": "15"
     },
     {
         "id": 33,
-        "caption": "33",
+        "caption": "B302\ud638(\uad00\ub9ac\uc2e4)",
         "pixels": [
             {
                 "x": 598,
@@ -54577,7 +54577,7 @@
     },
     {
         "id": 34,
-        "caption": "34",
+        "caption": "B302\ud638(\ud658\uacbd\uc6d0\uc2e4)",
         "pixels": [
             {
                 "x": 594,
@@ -55265,7 +55265,7 @@
     },
     {
         "id": 35,
-        "caption": "35",
+        "caption": "X",
         "pixels": [
             {
                 "x": 774,
@@ -55609,7 +55609,7 @@
     },
     {
         "id": 36,
-        "caption": "36",
+        "caption": "\uacc4\ub2e8",
         "pixels": [
             {
                 "x": 786,
@@ -56288,12 +56288,12 @@
                 "y": 763
             }
         ],
-        "move_up": 0,
-        "move_down": 0
+        "move_up": "38",
+        "move_down": "0"
     },
     {
         "id": 37,
-        "caption": "37",
+        "caption": "B321\ud638",
         "pixels": [
             {
                 "x": 830,
