@@ -42,6 +42,7 @@ export default function Contents({ id, caption, move_up, move_down }) {
       <Info>
         <Namebox>{id} </Namebox>
         <Nameboxcap>{caption}: </Nameboxcap>
+        <Namebox>up</Namebox>
         <Date
           placeholder={upvalue || "0"}
           value={newup || ""}
@@ -50,6 +51,7 @@ export default function Contents({ id, caption, move_up, move_down }) {
           }}
           onBlur={updateItem}
         />
+        <Nameboxdown> down</Nameboxdown>
         <Date
           placeholder={downvalue || "0"}
           value={newdown || ""}
@@ -68,7 +70,7 @@ const Wrapper = styled.span`
   border-color: black solid 1px;
 `;
 const Info = styled.div`
-  width: 300px;
+  width: 350px;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -85,6 +87,13 @@ const Nameboxcap = styled.div`
   font-size: 15px;
   padding-left: 20px;
   width: 100px;
+  font-weight: bold;
+  font-family: "굴림";
+`;
+const Nameboxdown = styled.div`
+  font-size: 15px;
+  padding-left: 20px;
+  width: 37px;
   font-weight: bold;
   font-family: "굴림";
 `;
