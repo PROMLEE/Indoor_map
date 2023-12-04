@@ -23,10 +23,23 @@ def update_caption(newdata, buildingname):
     for i in range(len(data)):
         if data[i]["id"] == newdata[i]["id"]:
             data[i]["caption"] = newdata[i]["caption"]
-            data[i]["move_up"] = newdata[i]["move_up"]
-            data[i]["move_down"] = newdata[i]["move_down"]
+            data[i]["move_up"] = int(newdata[i]["move_up"])
+            data[i]["move_down"] = int(newdata[i]["move_down"])
     save_json(file_path, data)
     return False
+
+
+def update_captiontoint():
+    directory_path = "result/CAU310/data"
+    file_list = os.listdir(directory_path)
+    for f in file_list:
+        data = load_json(directory_path + "/" + f)
+        for i in range(len(data)):
+            if type(data[i]["move_up"]) is str:
+                data[i]["move_up"] = int(data[i]["move_up"])
+            if type(data[i]["move_down"]) is str:
+                data[i]["move_down"] = int(data[i]["move_down"])
+        save_json(directory_path + "/" + f, data)
 
 
 def myPutText(src, text, pos, font_size, font_color):
@@ -131,3 +144,4 @@ def update_move_down(data, id):
 # print(data)
 # building_name = "CAU310_B4"
 # create_mask(building_name)
+# update_captiontoint()

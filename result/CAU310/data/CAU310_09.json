@@ -35732,8 +35732,8 @@
                 "y": 191
             }
         ],
-        "move_up": "2",
-        "move_down": "2"
+        "move_up": 2,
+        "move_down": 2
     },
     {
         "id": 3,
@@ -49588,8 +49588,8 @@
                 "y": 349
             }
         ],
-        "move_up": "27",
-        "move_down": "23"
+        "move_up": 27,
+        "move_down": 23
     },
     {
         "id": 23,
@@ -56865,7 +56865,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "29"
+        "move_down": 29
     },
     {
         "id": 29,
@@ -58520,8 +58520,8 @@
                 "y": 398
             }
         ],
-        "move_up": "33",
-        "move_down": "31"
+        "move_up": 33,
+        "move_down": 31
     },
     {
         "id": 31,
@@ -62544,8 +62544,8 @@
                 "y": 439
             }
         ],
-        "move_up": "35",
-        "move_down": "37"
+        "move_up": 35,
+        "move_down": 37
     },
     {
         "id": 35,
@@ -64585,7 +64585,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "36"
+        "move_down": 36
     },
     {
         "id": 37,
@@ -65456,8 +65456,8 @@
                 "y": 500
             }
         ],
-        "move_up": "38",
-        "move_down": "40"
+        "move_up": 38,
+        "move_down": 40
     },
     {
         "id": 38,
@@ -66000,8 +66000,8 @@
                 "y": 480
             }
         ],
-        "move_up": "40",
-        "move_down": "39"
+        "move_up": 40,
+        "move_down": 39
     },
     {
         "id": 39,
@@ -70168,8 +70168,8 @@
                 "y": 522
             }
         ],
-        "move_up": "43",
-        "move_down": "43"
+        "move_up": 43,
+        "move_down": 43
     },
     {
         "id": 43,
@@ -77940,8 +77940,8 @@
                 "y": 593
             }
         ],
-        "move_up": "52",
-        "move_down": "48"
+        "move_up": 52,
+        "move_down": 48
     },
     {
         "id": 49,
@@ -78605,7 +78605,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "49"
+        "move_down": 49
     },
     {
         "id": 50,
@@ -82253,7 +82253,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "56"
+        "move_down": 56
     },
     {
         "id": 54,
@@ -84189,7 +84189,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "59"
+        "move_down": 59
     },
     {
         "id": 56,
@@ -86949,7 +86949,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "61"
+        "move_down": 61
     },
     {
         "id": 59,
@@ -103161,7 +103161,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "76"
+        "move_down": 76
     },
     {
         "id": 76,

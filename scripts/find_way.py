@@ -38,8 +38,10 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
     ]
     # 파일 경로 생성 및 처리를 위한 for문
     for floor in range(startFloor, endFloor + is_back, is_back):
+        if floor == 0:
+            continue
         for filename in file_names:
-            if floor == int(filename[-7:-5]):
+            if floor == int(filename[-7:-5].replace("B", "-")):
                 f = filename
                 break
         # JSON 파일에서 데이터 읽기
@@ -87,22 +89,26 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
         Q.put((st_Averx, st_Avery))
         board[st_Averx][st_Avery] = -1
         escape = True
-
+        middlepoint = False
         if floor != endFloor and floor != startFloor:
-            for item in data:
-                if item["id"] == semipoint:
-                    if is_back == 1:
-                        semipoint = item["move_up"]
-                        break
-                    else:
-                        semipoint = item["move_down"]
-                        break
-            mask_file_path = os.path.join(
-                way_file_path, building_name + "_{:02d}".format(floor) + ".png"
-            )
-            cv2.imwrite(mask_file_path, mask)
-            print(building_name + "_{:02d}".format(floor) + ".png 생성 완료!")
-            continue
+            if semipoint != 0:
+                for item in data:
+                    if item["id"] == semipoint:
+                        if is_back == 1:
+                            semipoint = item["move_up"]
+                            break
+                        else:
+                            semipoint = item["move_down"]
+                            break
+                if semipoint != 0:
+                    floor = "_{:02d}".format(floor).replace("-", "B")
+                    mask_file_path = os.path.join(
+                        way_file_path, building_name + floor + ".png"
+                    )
+                    cv2.imwrite(mask_file_path, mask)
+                    print(building_name + floor + ".png 생성 완료!")
+                    continue
+            middlepoint = True
         while escape:
             cur = Q.get()
             for dir in range(8):
@@ -112,7 +118,7 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                 ny = cur[1] + dy[dir]
                 # print(nx, ny)
                 if (floor == endFloor and board[ny][nx] == endId) or (
-                    (floor == startFloor and board[ny][nx] in mover)
+                    ((floor == startFloor or middlepoint) and board[ny][nx] in mover)
                     and endFloor != startFloor
                 ):
                     endX, endY = nx, ny
@@ -128,7 +134,7 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                                 semipoint = item["move_down"]
                                 escape = False
                                 break
-                    if floor == startFloor and startFloor != endFloor:
+                    if floor == startFloor and startFloor != endFloor and elev:
                         if is_back == 1:
                             mask = myPutText(
                                 mask,
@@ -145,7 +151,24 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                                 15,
                                 (0, 0, 225),
                             )
-                    else:
+                    elif floor != endFloor:
+                        if is_back == 1:
+                            mask = myPutText(
+                                mask,
+                                str(endFloor) + "층으로 올라가세요!",
+                                (nx, ny),
+                                15,
+                                (0, 0, 225),
+                            )
+                        else:
+                            mask = myPutText(
+                                mask,
+                                str(endFloor) + "층으로 내려가세요!",
+                                (nx, ny),
+                                15,
+                                (0, 0, 225),
+                            )
+                    elif floor == endFloor:
                         mask = myPutText(mask, "도착!!!", (nx, ny), 15, (0, 0, 225))
                     break
                 elif 0 < nx < 1024 and 0 < ny < 1024 and board[ny][nx] == 0:
@@ -165,18 +188,17 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                 st = next[st[1]][st[0]]
             path.append(st)
             mask[st[1], st[0]] = [0, 0, 255]
-        mask_file_path = os.path.join(
-            way_file_path, building_name + "_{:02d}".format(floor) + ".png"
-        )
+        floor = "_{:02d}".format(floor).replace("-", "B")
+        mask_file_path = os.path.join(way_file_path, building_name + floor + ".png")
         cv2.imwrite(mask_file_path, mask)
-        print(building_name + "_{:02d}".format(floor) + ".png 생성 완료!")
+        print(building_name + floor + ".png 생성 완료!")
 
 
 building_name = "CAU310"
-startFloor = 2
-startId = 23
+startFloor = -5
+startId = 3
 endFloor = 7
-endId = 50
+endId = 34
 elev = 0
 if __name__ == "__main__":
     find_way(building_name, startFloor, startId, endFloor, endId, elev)

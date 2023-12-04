@@ -27376,8 +27376,8 @@
                 "y": 361
             }
         ],
-        "move_up": "22",
-        "move_down": "3"
+        "move_up": 22,
+        "move_down": 3
     },
     {
         "id": 6,
@@ -28552,8 +28552,8 @@
                 "y": 390
             }
         ],
-        "move_up": "23",
-        "move_down": "6"
+        "move_up": 23,
+        "move_down": 6
     },
     {
         "id": 9,
@@ -29696,8 +29696,8 @@
                 "y": 405
             }
         ],
-        "move_up": "25",
-        "move_down": "7"
+        "move_up": 25,
+        "move_down": 7
     },
     {
         "id": 11,
@@ -37904,7 +37904,7 @@
                 "y": 522
             }
         ],
-        "move_up": "32",
+        "move_up": 32,
         "move_down": 0
     },
     {
@@ -45713,7 +45713,7 @@
             }
         ],
         "move_up": 0,
-        "move_down": "15"
+        "move_down": 15
     },
     {
         "id": 24,

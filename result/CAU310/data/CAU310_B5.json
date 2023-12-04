@@ -26484,8 +26484,8 @@
                 "y": 251
             }
         ],
-        "move_up": "5",
-        "move_down": "4"
+        "move_up": 5,
+        "move_down": 4
     },
     {
         "id": 4,
@@ -31100,8 +31100,8 @@
                 "y": 267
             }
         ],
-        "move_up": "8",
-        "move_down": "5"
+        "move_up": 8,
+        "move_down": 5
     },
     {
         "id": 7,
@@ -31928,8 +31928,8 @@
                 "y": 307
             }
         ],
-        "move_up": "10",
-        "move_down": "6"
+        "move_up": 10,
+        "move_down": 6
     },
     {
         "id": 8,
@@ -47828,8 +47828,8 @@
                 "y": 548
             }
         ],
-        "move_up": "23",
-        "move_down": "0"
+        "move_up": 23,
+        "move_down": 0
     },
     {
         "id": 16,
