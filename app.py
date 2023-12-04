@@ -6,11 +6,13 @@ from scripts.edit_json import update_caption, create_mask
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}}, supports_credentials=True)
 
 
 @app.route("/editstore/<buildingname>", methods=["POST"])
 def edit_store(buildingname):
+    # my_res = Flask.Response("차단되지롱")
+    # my_res.headers["Access-Control-Allow-Origin"] = "*"
     data = request.json
     update_caption(data, buildingname)
     create_mask(buildingname)
