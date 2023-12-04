@@ -159,11 +159,11 @@ export default function Login() {
   };
   const toUpdown = () => {
     getstore();
-    navigate(`/editupdown`);
+    navigate(`/Indoor_map_react/editupdown`);
   };
   const toCaption = () => {
     getstore();
-    navigate(`/`);
+    navigate(`/Indoor_map_react`);
   };
   return (
     <div>
@@ -229,8 +229,8 @@ export default function Login() {
         </Button>
       </Forms>
       <Routes>
-        <Route path="/*" element={<EditCaption />} />
-        <Route path="/editupdown" element={<Editupdown />} />
+        <Route path="/Indoor_map_react" element={<EditCaption />} />
+        <Route path="/Indoor_map_react/editupdown" element={<Editupdown />} />
       </Routes>
     </div>
   );

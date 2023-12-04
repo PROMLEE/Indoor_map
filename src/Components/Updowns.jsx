@@ -6,12 +6,6 @@ import { updateUpdown } from "../Redux/state";
 export default function Contents({ id, caption, move_up, move_down }) {
   var backupmoveup = move_up;
   var backupmovedown = move_down;
-  // if (move_up) {
-  //   backupmoveup = move_up;
-  // }
-  // if (move_down) {
-  //   backupmovedown = move_down;
-  // }
   const [newup, setnewup] = useState();
   const [newdown, setnewdown] = useState();
   const [upvalue, setupvalue] = useState();
