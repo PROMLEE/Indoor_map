@@ -6,13 +6,13 @@ import { updateDataItem } from "../Redux/state";
 export default function Contents({ id, caption }) {
   const backupcaption = caption;
   const [newCaption, setnewCaption] = useState();
-  const [value, setnewvalue] = useState();
+  const [value, setnewvalue] = useState("");
 
   const dispatch = useDispatch();
   useEffect(() => {
     setnewvalue(caption);
-    setnewCaption();
-  }, [caption]);
+    setnewCaption("");
+  }, [caption, id]);
 
   const updateItem = () => {
     if (newCaption) dispatch(updateDataItem(id, newCaption));
