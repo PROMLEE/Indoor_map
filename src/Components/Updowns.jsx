@@ -42,21 +42,21 @@ export default function Contents({ id, caption, move_up, move_down }) {
       <Info>
         <Namebox>{id} </Namebox>
         <Nameboxcap>{caption}: </Nameboxcap>
-        <Namebox>up</Namebox>
-        <Date
-          placeholder={upvalue || "0"}
-          value={newup || ""}
-          onChange={(e) => {
-            setnewup(e.target.value);
-          }}
-          onBlur={updateItem}
-        />
         <Nameboxdown> down</Nameboxdown>
         <Date
           placeholder={downvalue || "0"}
           value={newdown || ""}
           onChange={(e) => {
             setnewdown(e.target.value);
+          }}
+          onBlur={updateItem}
+        />
+        <Namebox>up</Namebox>
+        <Date
+          placeholder={upvalue || "0"}
+          value={newup || ""}
+          onChange={(e) => {
+            setnewup(e.target.value);
           }}
           onBlur={updateItem}
         />
