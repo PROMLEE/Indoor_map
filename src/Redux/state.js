@@ -7,18 +7,18 @@ const GET_newdata = "GET_newdata";
 const UPDATE_DATA_ITEM = "UPDATE_DATA_ITEM";
 const UPDATE_DATA_UPDOWN = "UPDATE_DATA_UPDOWN";
 
-export const updateDataItem = (id, newCaption, newup, newdown) => {
+export const updateDataItem = (id, newCaption) => {
   return {
     type: UPDATE_DATA_ITEM,
+    payload: { id, newCaption},
+  };
+};
+export const updateUpdown = (id, newCaption, newup, newdown) => {
+  return {
+    type: UPDATE_DATA_UPDOWN,
     payload: { id, newCaption, newup, newdown },
   };
 };
-// export const updateUpdown = (id, up, down) => {
-//   return {
-//     type: UPDATE_DATA_ITEM,
-//     payload: { id, up, down },
-//   };
-// };
 export const getfloor = (floor) => {
   return {
     type: GET_floor,
@@ -60,10 +60,10 @@ const init = {
   buildingname: "",
   data: [{ id: 404, caption: "404 Error", move_up: 404, move_down: 404 }],
   newdata: [{ id: 404, caption: "404 Error", move_up: 404, move_down: 404 }],
-  url: "http://127.0.0.1:8080",
-  // url: "https://indoormap.store",
-  ufloor: null,
-  dfloor: null,
+  // url: "http://127.0.0.1:8080",
+  url: "https://indoormap.store",
+  ufloor: 0,
+  dfloor: 0,
 };
 export default function getelements(state = init, action) {
   switch (action.type) {
@@ -84,24 +84,22 @@ export default function getelements(state = init, action) {
         ...state,
         newdata: state.newdata.map((item) =>
           item.id === action.payload.id
-            ? { ...item, caption: action.payload.newCaption, move_up: action.payload.newup,
-              move_down: action.payload.newdown,}
+            ? { ...item, caption: action.payload.newCaption}
             : item
         ),
       };
-    // case UPDATE_DATA_UPDOWN:
-    //   return {
-    //     ...state,
-    //     newdata: state.newdata.map((item) =>
-    //       item.id === action.payload.id
-    //         ? {
-    //             ...item,
-    //             move_up: action.payload.up,
-    //             move_down: action.payload.payload.down,
-    //           }
-    //         : item
-    //     ),
-    //   };
+    case UPDATE_DATA_UPDOWN:
+      return {
+        ...state,
+        newdata: state.newdata.map((item) =>
+          item.id === action.payload.id
+            ? {
+              ...item, caption: action.payload.newCaption, move_up: action.payload.newup,
+              move_down: action.payload.newdown,
+              }
+            : item
+        ),
+      };
     default:
       return state;
   }

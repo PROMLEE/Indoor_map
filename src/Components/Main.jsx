@@ -79,27 +79,27 @@ export default function Login() {
 
   useEffect(() => {
     getstore();
-    // var Floor_;
-    // if (Floor[0] === "B") {
-    //   Floor_ = -parseInt(Floor[1]);
-    // } else {
-    //   Floor_ = parseInt(Floor);
-    // }
-    // // console.log(Floor_);
-    // var n_floor, p_floor;
-    // if (Floor_ === 1) {
-    //   n_floor = 2;
-    //   p_floor = -1;
-    // } else if (Floor_ === -1) {
-    //   n_floor = 1;
-    //   p_floor = -2;
-    // } else {
-    //   n_floor = Floor_ + 1;
-    //   p_floor = Floor_ - 1;
-    // }
-    // // console.log(n_floor, p_floor);
-    // dispatch(getufloor(n_floor.toString().padStart(2, "0").replace("-", "B")));
-    // dispatch(getdfloor(p_floor.toString().padStart(2, "0").replace("-", "B")));
+    var Floor_;
+    if (Floor[0] === "B") {
+      Floor_ = -parseInt(Floor[1]);
+    } else {
+      Floor_ = parseInt(Floor);
+    }
+    // console.log(Floor_);
+    var n_floor, p_floor;
+    if (Floor_ === 1) {
+      n_floor = 2;
+      p_floor = -1;
+    } else if (Floor_ === -1) {
+      n_floor = 1;
+      p_floor = -2;
+    } else {
+      n_floor = Floor_ + 1;
+      p_floor = Floor_ - 1;
+    }
+    // console.log(n_floor, p_floor);
+    dispatch(getufloor(n_floor.toString().padStart(2, "0").replace("-", "B")));
+    dispatch(getdfloor(p_floor.toString().padStart(2, "0").replace("-", "B")));
   }, [Floor]);
 
   const handleInputChangeB = (event) => {
@@ -154,6 +154,7 @@ export default function Login() {
   const buttonClick = async () => {
     try {
       setLoading(true);
+      console.log(newData);
       await axios.post(updateJson, { newData }).then((response) => {
         console.log(response.data);
       });
@@ -163,9 +164,13 @@ export default function Login() {
     setLoading(false);
   };
   const toUpdown = () => {
+    
+    getstore();
     navigate(`/editupdown`);
   };
   const toCaption = () => {
+    
+    getstore();
     navigate(`/`);
   };
   return (

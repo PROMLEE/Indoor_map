@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { updateDataItem } from "../Redux/state";
+import { updateUpdown } from "../Redux/state";
 
 export default function Contents({ id, caption, move_up, move_down }) {
   var backupmoveup = 0;
@@ -29,14 +29,14 @@ export default function Contents({ id, caption, move_up, move_down }) {
     console.log(newup, newdown)
 
     if (newup !== undefined && newdown !== undefined )
-      dispatch(updateDataItem(id, caption, newup, newdown));
+      dispatch(updateUpdown(id, caption, newup, newdown));
     else if( newup !== undefined){
-      dispatch(updateDataItem(id, caption, newup, backupmovedown));
+      dispatch(updateUpdown(id, caption, newup, backupmovedown));
     }
     else if(newdown !== undefined){
-      dispatch(updateDataItem(id, caption, backupmoveup, newdown));
+      dispatch(updateUpdown(id, caption, backupmoveup, newdown));
     }
-    else dispatch(updateDataItem(id,caption,  backupmoveup, backupmovedown));
+    else dispatch(updateUpdown(id,caption,  backupmoveup, backupmovedown));
   };
 
   return (
