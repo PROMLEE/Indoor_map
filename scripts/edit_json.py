@@ -23,6 +23,8 @@ def update_caption(newdata, buildingname):
     for i in range(len(data)):
         if data[i]["id"] == newdata[i]["id"]:
             data[i]["caption"] = newdata[i]["caption"]
+            data[i]["move_up"] = newdata[i]["move_up"]
+            data[i]["move_down"] = newdata[i]["move_down"]
     save_json(file_path, data)
     return False
 
