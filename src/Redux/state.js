@@ -10,7 +10,7 @@ const UPDATE_DATA_UPDOWN = "UPDATE_DATA_UPDOWN";
 export const updateDataItem = (id, newCaption) => {
   return {
     type: UPDATE_DATA_ITEM,
-    payload: { id, newCaption},
+    payload: { id, newCaption },
   };
 };
 export const updateUpdown = (id, newCaption, newup, newdown) => {
@@ -56,7 +56,7 @@ export const getnewdata = (newdata) => {
   };
 };
 const init = {
-  floor: 1,
+  floor: 0,
   buildingname: "",
   data: [{ id: 404, caption: "404 Error", move_up: 404, move_down: 404 }],
   newdata: [{ id: 404, caption: "404 Error", move_up: 404, move_down: 404 }],
@@ -84,7 +84,7 @@ export default function getelements(state = init, action) {
         ...state,
         newdata: state.newdata.map((item) =>
           item.id === action.payload.id
-            ? { ...item, caption: action.payload.newCaption}
+            ? { ...item, caption: action.payload.newCaption }
             : item
         ),
       };
@@ -94,8 +94,10 @@ export default function getelements(state = init, action) {
         newdata: state.newdata.map((item) =>
           item.id === action.payload.id
             ? {
-              ...item, caption: action.payload.newCaption, move_up: action.payload.newup,
-              move_down: action.payload.newdown,
+                ...item,
+                caption: action.payload.newCaption,
+                move_up: action.payload.newup,
+                move_down: action.payload.newdown,
               }
             : item
         ),

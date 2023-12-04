@@ -15,7 +15,7 @@ export default function Contents({ id, caption }) {
   }, [caption]);
 
   const updateItem = () => {
-    if (newCaption !== "") dispatch(updateDataItem(id, newCaption));
+    if (newCaption) dispatch(updateDataItem(id, newCaption));
     else dispatch(updateDataItem(id, backupcaption));
   };
 

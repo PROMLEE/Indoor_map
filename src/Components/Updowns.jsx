@@ -6,9 +6,10 @@ import { updateUpdown } from "../Redux/state";
 export default function Contents({ id, caption, move_up, move_down }) {
   var backupmoveup = 0;
   var backupmovedown = 0;
-  if(move_up){
+  if (move_up) {
     backupmoveup = move_up;
-  }if(move_down){
+  }
+  if (move_down) {
     backupmovedown = move_down;
   }
   const [newup, setnewup] = useState();
@@ -18,7 +19,7 @@ export default function Contents({ id, caption, move_up, move_down }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(move_up, move_down)
+    console.log(move_up, move_down);
     setupvalue(move_up);
     setdownvalue(move_down);
     setnewup();
@@ -26,17 +27,14 @@ export default function Contents({ id, caption, move_up, move_down }) {
   }, [move_up, move_down]);
 
   const updateItem = () => {
-    console.log(newup, newdown)
+    console.log(newup, newdown);
 
-    if (newup !== undefined && newdown !== undefined )
-      dispatch(updateUpdown(id, caption, newup, newdown));
-    else if( newup !== undefined){
+    if (newup && newdown) dispatch(updateUpdown(id, caption, newup, newdown));
+    else if (newup) {
       dispatch(updateUpdown(id, caption, newup, backupmovedown));
-    }
-    else if(newdown !== undefined){
+    } else if (newdown) {
       dispatch(updateUpdown(id, caption, backupmoveup, newdown));
-    }
-    else dispatch(updateUpdown(id,caption,  backupmoveup, backupmovedown));
+    } else dispatch(updateUpdown(id, caption, backupmoveup, backupmovedown));
   };
 
   return (
