@@ -57,7 +57,7 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
         mask = np.zeros((height, width, 3), dtype=np.uint8)
         mask = myPutText(
             mask,
-            building_name + " 건물 " + str(floor) + " 층입니다",
+            building_name + " 건물 " + str(floor).replace("-", "B") + " 층입니다",
             (500, 20),
             30,
             (255, 0, 0),
@@ -91,24 +91,41 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
         escape = True
         middlepoint = False
         if floor != endFloor and floor != startFloor:
+            for item in data:
+                if item["id"] == semipoint:
+                    if is_back == 1:
+                        semipoint = item["move_up"]
+                        break
+                    else:
+                        semipoint = item["move_down"]
+                        break
             if semipoint != 0:
-                for item in data:
-                    if item["id"] == semipoint:
-                        if is_back == 1:
-                            semipoint = item["move_up"]
-                            break
-                        else:
-                            semipoint = item["move_down"]
-                            break
-                if semipoint != 0:
-                    floor = "_{:02d}".format(floor).replace("-", "B")
-                    mask_file_path = os.path.join(
-                        way_file_path, building_name + floor + ".png"
-                    )
-                    cv2.imwrite(mask_file_path, mask)
-                    print(building_name + floor + ".png 생성 완료!")
-                    continue
+                floor = ("_{:02d}".format(floor)).replace("-", "B")
+                if not elev:
+                    if is_back:
+                        mask = myPutText(
+                            mask,
+                            "한 층 더 올라가세요!",
+                            (st_Averx, st_Avery),
+                            15,
+                            (0, 0, 225),
+                        )
+                    else:
+                        mask = myPutText(
+                            mask,
+                            "한 층 더 내려가세요!",
+                            (st_Averx, st_Avery),
+                            15,
+                            (0, 0, 225),
+                        )
+                mask_file_path = os.path.join(
+                    way_file_path, building_name + floor + ".png"
+                )
+                cv2.imwrite(mask_file_path, mask)
+                print(building_name + floor + ".png 생성 완료!")
+                continue
             middlepoint = True
+        print(middlepoint, semipoint)
         while escape:
             cur = Q.get()
             for dir in range(8):
@@ -116,7 +133,6 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                     break
                 nx = cur[0] + dx[dir]
                 ny = cur[1] + dy[dir]
-                # print(nx, ny)
                 if (floor == endFloor and board[ny][nx] == endId) or (
                     ((floor == startFloor or middlepoint) and board[ny][nx] in mover)
                     and endFloor != startFloor
@@ -134,48 +150,53 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                                 semipoint = item["move_down"]
                                 escape = False
                                 break
-                    if floor == startFloor and startFloor != endFloor and elev:
+                    if semipoint == 0 and floor != endFloor:
+                        escape = True
+                        continue
+                    if floor != endFloor:
                         if is_back == 1:
-                            mask = myPutText(
-                                mask,
-                                str(endFloor) + "층으로 올라가세요!",
-                                (nx, ny),
-                                15,
-                                (0, 0, 225),
-                            )
+                            if elev:
+                                mask = myPutText(
+                                    mask,
+                                    str(endFloor) + "층 혹은 가장 높은 층으로 올라가세요!",
+                                    (nx, ny),
+                                    15,
+                                    (0, 0, 225),
+                                )
+                            else:
+                                mask = myPutText(
+                                    mask,
+                                    "한 층 더 올라가세요!",
+                                    (nx, ny),
+                                    15,
+                                    (0, 0, 225),
+                                )
                         else:
-                            mask = myPutText(
-                                mask,
-                                str(endFloor) + "층으로 내려가세요!",
-                                (nx, ny),
-                                15,
-                                (0, 0, 225),
-                            )
-                    elif floor != endFloor:
-                        if is_back == 1:
-                            mask = myPutText(
-                                mask,
-                                str(endFloor) + "층으로 올라가세요!",
-                                (nx, ny),
-                                15,
-                                (0, 0, 225),
-                            )
-                        else:
-                            mask = myPutText(
-                                mask,
-                                str(endFloor) + "층으로 내려가세요!",
-                                (nx, ny),
-                                15,
-                                (0, 0, 225),
-                            )
-                    elif floor == endFloor:
+                            if elev:
+                                mask = myPutText(
+                                    mask,
+                                    str(endFloor) + "층 혹은 가장 낮은 층으로 내려가세요!",
+                                    (nx, ny),
+                                    15,
+                                    (0, 0, 225),
+                                )
+                            else:
+                                mask = myPutText(
+                                    mask,
+                                    "한 층 더 내려가세요!",
+                                    (nx, ny),
+                                    15,
+                                    (0, 0, 225),
+                                )
+                    else:
                         mask = myPutText(mask, "도착!!!", (nx, ny), 15, (0, 0, 225))
+                    print(middlepoint, semipoint)
                     break
                 elif 0 < nx < 1024 and 0 < ny < 1024 and board[ny][nx] == 0:
                     Q.put((nx, ny))
                     next[ny][nx] = (cur[0], cur[1])
                     board[ny][nx] = -1
-        if floor == endFloor or floor == startFloor:
+        if floor == endFloor or floor == startFloor or middlepoint:
             path = []
             st = (endX, endY)
             while st != (st_Averx, st_Avery):
@@ -196,9 +217,9 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
 
 building_name = "CAU310"
 startFloor = -5
-startId = 3
-endFloor = 7
-endId = 34
+startId = 16
+endFloor = 12
+endId = 46
 elev = 0
 if __name__ == "__main__":
     find_way(building_name, startFloor, startId, endFloor, endId, elev)
