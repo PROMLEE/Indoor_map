@@ -14,7 +14,7 @@ def myPutText(src, text, pos, font_size, font_color):
 
 
 url = "./result"
-building_name = "CAU310"
+building_name = "CAU208"
 way_file_path = os.path.join(url, building_name, "mask")
 if not os.path.exists(way_file_path):
     os.makedirs(way_file_path, exist_ok=True)

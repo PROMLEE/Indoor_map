@@ -6,13 +6,12 @@ from scipy.io import loadmat
 import matplotlib.pyplot as plt
 import pickle
 import tensorflow as tf
-from PIL import Image
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 # DIR = "h5examples/v3+/"
-test_images = sorted(glob(os.path.join("sources\CAU208\images/*")))
+test_images = sorted(glob(os.path.join("sources\CAU208\gray/*")))
 # test_images = sorted(glob(os.path.join("Validation/images/*")))
 model = tf.keras.models.load_model("scripts\example.h5")
 history = pickle.load(open("scripts\Dict.txt", "rb"))
@@ -28,6 +27,7 @@ def read_image(image_path, mask=False):
         image.set_shape([None, None, 1])
         image = tf.image.resize(images=image, size=[IMAGE_SIZE, IMAGE_SIZE])
     else:
+        # image = convert_non_greyscale_to_white(image)
         image = tf.image.decode_png(image, channels=3)
         image.set_shape([None, None, 3])
         image = tf.image.resize(images=image, size=[IMAGE_SIZE, IMAGE_SIZE])
@@ -77,17 +77,14 @@ def infer(model, image_tensor):
     return predictions
 
 
-def decode_segmentaion_masks(mask, colormap, n_classes):
-    r = np.zeros_like(mask).astype(np.uint8)
-    g = np.zeros_like(mask).astype(np.uint8)
-    b = np.zeros_like(mask).astype(np.uint8)
-    for i in range(0, n_classes):
-        idx = mask == i
-        r[idx] = colormap[i, 0]
-        g[idx] = colormap[i, 1]
-        b[idx] = colormap[i, 2]
-    rgb = np.stack([r, g, b], axis=2)
-    return rgb
+def decode_segmentaion_masks(mask, n_classes):
+    white_color = np.array([255, 255, 255], dtype=np.uint8)
+    colored_mask = np.zeros((*mask.shape, 3), dtype=np.uint8)
+    colored_mask[mask == 0] = np.array([0, 0, 0], dtype=np.uint8)
+    for i in range(1, n_classes):
+        colored_mask[mask == i] = white_color
+
+    return colored_mask
 
 
 def get_overlay(image, colored_mask):
@@ -126,17 +123,24 @@ def plot_samples_matplotlib(display_list, figsize=(5, 3)):
 #         cv2.imwrite(mask_file, cv2.cvtColor(prediction_colormap, cv2.COLOR_RGB2BGR))
 
 
-def is_greyscale(pixel):
-    return pixel[0] == pixel[1] == pixel[2]
+# def is_greyscale(pixel):
+#     return pixel[0] == pixel[1] == pixel[2]
+def is_grayscale(rgb, tolerance=30):
+    """주어진 픽셀이 무채색인지 확인합니다."""
+    # print(rgb)
+    r, g, b = rgb
+    return max(r, g, b) - min(r, g, b) <= tolerance
 
 
 def convert_non_greyscale_to_white(image):
     height, width, _ = image.shape
-    white_color = [255, 255, 255]
+    # white_color = [255, 255, 255]
     for y in range(height):
         for x in range(width):
-            if not is_greyscale(image[y, x]):
-                image[y, x] = white_color
+            if not is_grayscale(image[y, x]):
+                image[y, x] = [255, 255, 255]
+    overlay_file = os.path.join("sources/CAU208/masks", f"overlay_.png")
+    cv2.imwrite(overlay_file, cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
     return image
 
 
@@ -151,18 +155,19 @@ def plot_predictions(images_list, colormap, model):
         image_array = image_array.astype(np.uint8)
 
         # Convert non-greyscale pixels to white
-        image_array = convert_non_greyscale_to_white(image_array)
+        # image_array = convert_non_greyscale_to_white(image_array)
 
         prediction_mask = infer(image_tensor=image_tensor, model=model)
-        prediction_colormap = decode_segmentaion_masks(prediction_mask, colormap, 20)
+        prediction_colormap = decode_segmentaion_masks(prediction_mask, 5)
         overlay = get_overlay(image_tensor, prediction_colormap)
         plot_samples_matplotlib(
             [image_tensor, overlay, prediction_colormap], figsize=(18, 14)
         )
 
-        overlay_file = os.path.join("result", f"overlay_{idx}.png")
-        mask_file = os.path.join("result", f"mask_{idx}.png")
-        cv2.imwrite(overlay_file, cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR))
+        mask_file = os.path.join("sources/CAU208/masks", f"CAU208_0{idx+1}.png")
+        prediction_colormap = cv2.resize(
+            prediction_colormap, (1024, 1024), interpolation=cv2.INTER_AREA
+        )
         cv2.imwrite(mask_file, cv2.cvtColor(prediction_colormap, cv2.COLOR_RGB2BGR))
 
 
