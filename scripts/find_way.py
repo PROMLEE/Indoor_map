@@ -125,7 +125,7 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                 print(building_name + floor + ".png 생성 완료!")
                 continue
             middlepoint = True
-        print(middlepoint, semipoint)
+        # print(middlepoint, semipoint)
         while escape:
             cur = Q.get()
             for dir in range(8):
@@ -190,7 +190,7 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
                                 )
                     else:
                         mask = myPutText(mask, "도착!!!", (nx, ny), 15, (0, 0, 225))
-                    print(middlepoint, semipoint)
+                    # print(middlepoint, semipoint)
                     break
                 elif 0 < nx < 1024 and 0 < ny < 1024 and board[ny][nx] == 0:
                     Q.put((nx, ny))
@@ -216,10 +216,10 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
 
 
 building_name = "CAU310"
-startFloor = -5
-startId = 16
+startFloor = -6
+startId = 7
 endFloor = 12
-endId = 46
+endId = 4
 elev = 0
 if __name__ == "__main__":
     find_way(building_name, startFloor, startId, endFloor, endId, elev)
