@@ -81,7 +81,9 @@ if not os.path.exists(json_file_path):
     os.makedirs(json_file_path, exist_ok=True)
 # print(file_list)
 file_list = [
-    "CAU310_B4.png",
+    "CAU310_10.png",
+    "CAU310_11.png",
+    "CAU310_09.png",
 ]
 for f in file_list:
     result_name = f.replace(".png", "")
