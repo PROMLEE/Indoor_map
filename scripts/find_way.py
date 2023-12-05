@@ -215,10 +215,10 @@ def find_way(building_name, startFloor, startId, endFloor, endId, elev):
         print(building_name + floor + ".png 생성 완료!")
 
 
-building_name = "CAU310"
-startFloor = -6
+building_name = "CAU208"
+startFloor = 1
 startId = 7
-endFloor = 12
+endFloor = 1
 endId = 4
 elev = 0
 if __name__ == "__main__":

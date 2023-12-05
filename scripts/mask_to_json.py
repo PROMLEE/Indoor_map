@@ -69,22 +69,22 @@ def draw_line(img, start, end, components):
 blue = np.array([255, 0, 0])
 white = np.array([255, 255, 255])
 # 이미지 불러오기
-building_name = "CAU310"
+building_name = "CAU208"
 mask_file_path = os.path.join("sources", building_name, "masks")
-# file_list = [
-#     f
-#     for f in os.listdir(mask_file_path)
-#     if os.path.isfile(os.path.join(mask_file_path, f))
-# ]
+file_list = [
+    f
+    for f in os.listdir(mask_file_path)
+    if os.path.isfile(os.path.join(mask_file_path, f))
+]
 json_file_path = os.path.join("result", building_name, "etc")
 if not os.path.exists(json_file_path):
     os.makedirs(json_file_path, exist_ok=True)
 # print(file_list)
-file_list = [
-    "CAU310_10.png",
-    "CAU310_11.png",
-    "CAU310_09.png",
-]
+# file_list = [
+#     "CAU310_10.png",
+#     "CAU310_11.png",
+#     "CAU310_09.png",
+# ]
 for f in file_list:
     result_name = f.replace(".png", "")
     f_url = os.path.join(mask_file_path, f)
