@@ -146,6 +146,7 @@ def update_move_down(data, id):
 # newdata = [{"id": 1, "caption": "ddddd"}]
 # update_caption(data, newdata)
 # print(data)
-building_name = "CAU310_01"
-create_mask(building_name)
+if __name__ == "__main__":
+    building_name = "CAU310_01"
+    create_mask(building_name)
 # update_captiontoint()
