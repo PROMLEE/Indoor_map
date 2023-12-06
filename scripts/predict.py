@@ -63,9 +63,9 @@ def read_image(image_path, mask=False):
 
 # plt.show()
 
-colormap = loadmat("scripts\matlab.mat")["colormap"]
-colormap = colormap * 100
-colormap = colormap.astype(np.uint8)
+# colormap = loadmat("scripts\matlab.mat")["colormap"]
+# colormap = colormap * 100
+# colormap = colormap.astype(np.uint8)
 
 
 def infer(model, image_tensor):
@@ -170,4 +170,4 @@ def plot_predictions(buildingname):
     cv2.imwrite(mask_file, cv2.cvtColor(prediction_colormap, cv2.COLOR_RGB2BGR))
 
 
-plot_predictions("CAU208_01")
+# plot_predictions("CAU208_01")

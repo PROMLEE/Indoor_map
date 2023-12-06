@@ -4,6 +4,7 @@ import numpy as np
 import math
 import json
 from PIL import ImageFont, ImageDraw, Image
+from scripts.firebase import put_firebase
 
 
 def myPutText(src, text, pos, font_size, font_color):
@@ -197,7 +198,10 @@ def mask_to_json(buildingname):
 
     # JSON 파일로 저장할 데이터 생성
     edge_data = []
+    dict = {}
     for id, pixels in components.items():
+        if id not in [-2, 1]:
+            dict[str(id)] = f"{id}"
         edge_data.append(
             {
                 "id": id,
@@ -207,7 +211,7 @@ def mask_to_json(buildingname):
                 "move_down": 0,
             }
         )
-
+    put_firebase(buildingname, dict)
     # JSON 파일로 저장
     with open(os.path.join(outputurl, buildingname + ".json"), "w") as file:
         json.dump(edge_data, file, indent=4)

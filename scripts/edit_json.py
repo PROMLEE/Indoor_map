@@ -2,7 +2,7 @@ import json
 import os
 import cv2
 import numpy as np
-
+from scripts.firebase import put_firebase
 from PIL import ImageFont, ImageDraw, Image
 
 
@@ -20,12 +20,16 @@ def update_caption(newdata, buildingname):
     file_path = f"result/{buildingname[:-3]}/data/{buildingname}.json"
     data = load_json(file_path)
     newdata = newdata["newData"]
+    f_data = {}
     for i in range(len(data)):
-        if data[i]["id"] == newdata[i]["id"]:
-            data[i]["caption"] = newdata[i]["caption"]
-            data[i]["move_up"] = int(newdata[i]["move_up"])
-            data[i]["move_down"] = int(newdata[i]["move_down"])
+        data[i]["caption"] = newdata[i]["caption"]
+        data[i]["move_up"] = int(newdata[i]["move_up"])
+        data[i]["move_down"] = int(newdata[i]["move_down"])
+        if data[i]["id"] in [-2, 1] or data[i]["caption"] == "X":
+            continue
+        f_data[str(data[i]["id"])] = data[i]["caption"]
     save_json(file_path, data)
+    put_firebase(buildingname, f_data)
     return False
 
 
