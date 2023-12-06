@@ -3,21 +3,19 @@ import cv2
 import numpy as np
 from glob import glob
 from scipy.io import loadmat
-import matplotlib.pyplot as plt
+
+# import matplotlib.pyplot as plt
 import pickle
 import tensorflow as tf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 # DIR = "h5examples/v3+/"
-test_images = sorted(glob(os.path.join("sources\CAU208\gray/*")))
+# test_images = sorted(glob(os.path.join("sources\CAU208\gray/*")))
 # test_images = sorted(glob(os.path.join("Validation/images/*")))
-model = tf.keras.models.load_model("scripts\example.h5")
-history = pickle.load(open("scripts\Dict.txt", "rb"))
-
-
-IMAGE_SIZE = 512
+# model = tf.keras.models.load_model("scripts\example.h5")
+# history = pickle.load(open("scripts\Dict.txt", "rb"))
 
 
 def read_image(image_path, mask=False):
@@ -25,12 +23,12 @@ def read_image(image_path, mask=False):
     if mask:
         image = tf.image.decode_png(image, channels=1)
         image.set_shape([None, None, 1])
-        image = tf.image.resize(images=image, size=[IMAGE_SIZE, IMAGE_SIZE])
+        image = tf.image.resize(images=image, size=[512, 512])
     else:
         # image = convert_non_greyscale_to_white(image)
         image = tf.image.decode_png(image, channels=3)
         image.set_shape([None, None, 3])
-        image = tf.image.resize(images=image, size=[IMAGE_SIZE, IMAGE_SIZE])
+        image = tf.image.resize(images=image, size=[512, 512])
         image = image / 127.5 - 1
 
     return image
@@ -94,14 +92,14 @@ def get_overlay(image, colored_mask):
     return overlay
 
 
-def plot_samples_matplotlib(display_list, figsize=(5, 3)):
-    _, axes = plt.subplots(nrows=1, ncols=len(display_list), figsize=figsize)
-    for i in range(len(display_list)):
-        if display_list[i].shape[-1] == 3:
-            axes[i].imshow(tf.keras.preprocessing.image.array_to_img(display_list[i]))
-        else:
-            axes[i].imshow(display_list[i])
-    plt.show()
+# def plot_samples_matplotlib(display_list, figsize=(5, 3)):
+#     _, axes = plt.subplots(nrows=1, ncols=len(display_list), figsize=figsize)
+#     for i in range(len(display_list)):
+#         if display_list[i].shape[-1] == 3:
+#             axes[i].imshow(tf.keras.preprocessing.image.array_to_img(display_list[i]))
+#         else:
+#             axes[i].imshow(display_list[i])
+#     plt.show()
 
 
 # def plot_predictions(images_list, colormap, model):
@@ -144,31 +142,32 @@ def convert_non_greyscale_to_white(image):
     return image
 
 
-def plot_predictions(images_list, colormap, model):
-    if not os.path.exists("result"):
-        os.makedirs("result")
+def plot_predictions(buildingname):
+    model = tf.keras.models.load_model("scripts\example.h5")
+    inputurl = f"sources/{buildingname[:-3]}/gray/{buildingname}.png"
+    outputurl = f"sources/{buildingname[:-3]}/mask"
+    if not os.path.exists(outputurl):
+        os.makedirs(outputurl, exist_ok=True)
+    image_tensor = read_image(inputurl)
+    image_array = tf.keras.preprocessing.image.img_to_array(image_tensor)
+    image_array = (image_array + 1) * 127.5  # Convert back to original scale
+    image_array = image_array.astype(np.uint8)
 
-    for idx, image_file in enumerate(images_list):
-        image_tensor = read_image(image_file)
-        image_array = tf.keras.preprocessing.image.img_to_array(image_tensor)
-        image_array = (image_array + 1) * 127.5  # Convert back to original scale
-        image_array = image_array.astype(np.uint8)
+    # Convert non-greyscale pixels to white
+    # image_array = convert_non_greyscale_to_white(image_array)
 
-        # Convert non-greyscale pixels to white
-        # image_array = convert_non_greyscale_to_white(image_array)
+    prediction_mask = infer(image_tensor=image_tensor, model=model)
+    prediction_colormap = decode_segmentaion_masks(prediction_mask, 5)
+    # overlay = get_overlay(image_tensor, prediction_colormap)
+    # plot_samples_matplotlib(
+    #     [image_tensor, overlay, prediction_colormap], figsize=(18, 14)
+    # )
 
-        prediction_mask = infer(image_tensor=image_tensor, model=model)
-        prediction_colormap = decode_segmentaion_masks(prediction_mask, 5)
-        overlay = get_overlay(image_tensor, prediction_colormap)
-        plot_samples_matplotlib(
-            [image_tensor, overlay, prediction_colormap], figsize=(18, 14)
-        )
-
-        mask_file = os.path.join("sources/CAU208/masks", f"CAU208_0{idx+1}.png")
-        prediction_colormap = cv2.resize(
-            prediction_colormap, (1024, 1024), interpolation=cv2.INTER_AREA
-        )
-        cv2.imwrite(mask_file, cv2.cvtColor(prediction_colormap, cv2.COLOR_RGB2BGR))
+    mask_file = os.path.join(outputurl, f"{buildingname}.png")
+    prediction_colormap = cv2.resize(
+        prediction_colormap, (1024, 1024), interpolation=cv2.INTER_AREA
+    )
+    cv2.imwrite(mask_file, cv2.cvtColor(prediction_colormap, cv2.COLOR_RGB2BGR))
 
 
-plot_predictions(test_images, colormap, model=model)
+plot_predictions("CAU208_01")
