@@ -123,7 +123,7 @@ def get_filelist(buildingname):
     try:
         file_list = os.listdir(directory_path)
         for i in range(len(file_list)):
-            file_list[i] = file_list[i][-7:-5]
+            file_list[i] = file_list[i][-6:-4]
         return jsonify(file_list)
     except FileNotFoundError:
         return jsonify({"error": "Directory not found"}), 404
