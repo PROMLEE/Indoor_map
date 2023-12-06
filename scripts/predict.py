@@ -1,21 +1,9 @@
 import os
 import cv2
 import numpy as np
-from glob import glob
-from scipy.io import loadmat
-
-# import matplotlib.pyplot as plt
-import pickle
 import tensorflow as tf
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-
-
-# DIR = "h5examples/v3+/"
-# test_images = sorted(glob(os.path.join("sources\CAU208\gray/*")))
-# test_images = sorted(glob(os.path.join("Validation/images/*")))
-# model = tf.keras.models.load_model("scripts\example.h5")
-# history = pickle.load(open("scripts\Dict.txt", "rb"))
 
 
 def read_image(image_path, mask=False):
@@ -145,7 +133,7 @@ def convert_non_greyscale_to_white(image):
 def plot_predictions(buildingname):
     model = tf.keras.models.load_model("scripts/example.h5")
     inputurl = f"sources/{buildingname[:-3]}/gray/{buildingname}.png"
-    outputurl = f"sources/{buildingname[:-3]}/mask"
+    outputurl = f"sources/{buildingname[:-3]}/masks"
     if not os.path.exists(outputurl):
         os.makedirs(outputurl, exist_ok=True)
     image_tensor = read_image(inputurl)
@@ -170,4 +158,5 @@ def plot_predictions(buildingname):
     cv2.imwrite(mask_file, cv2.cvtColor(prediction_colormap, cv2.COLOR_RGB2BGR))
 
 
-# plot_predictions("CAU208_01")
+if __name__ == "__main__":
+    plot_predictions("동훈궁_01")

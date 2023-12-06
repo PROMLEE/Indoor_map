@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import math
 import json
-from PIL import ImageFont, ImageDraw, Image
+from PIL import ImageFont, ImageDraw, Image, ExifTags
 from scripts.firebase import put_firebase
 
 
@@ -59,12 +59,29 @@ def is_grayscale(rgb):
     return max(r, g, b) - min(r, g, b) <= 30
 
 
+def rotate_image_based_on_exif(img):
+    for orientation in ExifTags.TAGS.keys():
+        if ExifTags.TAGS[orientation] == "Orientation":
+            break
+    exif = img._getexif()
+
+    if exif is not None:
+        if exif[orientation] == 3:
+            img = img.rotate(180, expand=True)
+        elif exif[orientation] == 6:
+            img = img.rotate(270, expand=True)
+        elif exif[orientation] == 8:
+            img = img.rotate(90, expand=True)
+    return img
+
+
 def remove_colored_pixels(buildingname):
     inputurl = f"sources/{buildingname[:-3]}/images/{buildingname}.png"
     outputurl = f"sources/{buildingname[:-3]}/gray"
     if not os.path.exists(outputurl):
         os.makedirs(outputurl, exist_ok=True)
     with Image.open(inputurl) as img:
+        img = rotate_image_based_on_exif(img)
         rgb_img = img.convert("RGB")
         width, height = rgb_img.size
         for x in range(width):
@@ -142,6 +159,8 @@ white = np.array([255, 255, 255])
 def mask_to_json(buildingname):
     inputurl = f"sources/{buildingname[:-3]}/masks/{buildingname}.png"
     outputurl = f"result/{buildingname[:-3]}/data"
+    if not os.path.exists(outputurl):
+        os.makedirs(outputurl, exist_ok=True)
     mask = cv2.imread(inputurl, cv2.IMREAD_COLOR)
     height, width = mask.shape[0:2]
 
@@ -215,3 +234,10 @@ def mask_to_json(buildingname):
     # JSON 파일로 저장
     with open(os.path.join(outputurl, buildingname + ".json"), "w") as file:
         json.dump(edge_data, file, indent=4)
+
+
+if __name__ == "__main__":
+    # remove_colored_pixels("동훈궁_01")
+    # size_convert("동훈궁_01")
+    # mask_to_json("동훈궁_01")
+    to_mask("동훈궁_01")
