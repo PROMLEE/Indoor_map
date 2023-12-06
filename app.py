@@ -1,9 +1,16 @@
 import json
 import os
-from flask import Flask, jsonify, request, send_from_directory, make_response
+from flask import Flask, jsonify, request, send_from_directory
 from scripts.find_way import find_way
 from scripts.edit_json import update_caption, create_mask
 from flask_cors import CORS
+from scripts.predict import plot_predictions
+from scripts.mask_to_json import (
+    mask_to_json,
+    size_convert,
+    remove_colored_pixels,
+    to_mask,
+)
 
 app = Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}}, supports_credentials=True)
@@ -98,26 +105,6 @@ def filtered_json(filename):
     return jsonify(filtered_data)
 
 
-# @app.route("/updown/<filename>")
-# def updown(filename):
-#     img_path = f"result/{filename[:-3]}/data"
-#     fname = f"{filename}.json"
-#     with open(os.path.join(img_path, fname), "r") as file:
-#         data = json.load(file)
-#     filtered_data = []
-#     for item in data:
-#         # if item["caption"] in ["엘리베이터", "계단", "elevator", "stair"]:
-#         filtered_data.append(
-#             {
-#                 "id": item["id"],
-#                 "caption": item["caption"],
-#                 "move_up": item["move_up"],
-#                 "move_down": item["move_down"],
-#             }
-#         )
-#     return jsonify(filtered_data)
-
-
 @app.route("/dir/<buildingname>")
 def list_directory(buildingname):
     directory_path = f"result/{buildingname}/data"
@@ -153,6 +140,16 @@ def upload_file(filename):
         return "No selected file"
     if file:
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], f"{filename}.png"))
+        remove_colored_pixels(filename)
+        print("remove_colored_pixels complete")
+        plot_predictions(filename)
+        print("plot_predictions complete")
+        size_convert(filename)
+        print("size_convert complete")
+        mask_to_json(filename)
+        print("mask_to_json complete")
+        to_mask(filename)
+        print("create mask complete")
         return "File successfully uploaded"
 
 
