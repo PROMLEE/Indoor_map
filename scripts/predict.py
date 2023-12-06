@@ -1,21 +1,9 @@
 import os
 import cv2
 import numpy as np
-from glob import glob
-from scipy.io import loadmat
-
-# import matplotlib.pyplot as plt
-import pickle
 import tensorflow as tf
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-
-
-# DIR = "h5examples/v3+/"
-# test_images = sorted(glob(os.path.join("sources\CAU208\gray/*")))
-# test_images = sorted(glob(os.path.join("Validation/images/*")))
-# model = tf.keras.models.load_model("scripts\example.h5")
-# history = pickle.load(open("scripts\Dict.txt", "rb"))
 
 
 def read_image(image_path, mask=False):

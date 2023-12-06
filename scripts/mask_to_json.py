@@ -4,7 +4,7 @@ import numpy as np
 import math
 import json
 from PIL import ImageFont, ImageDraw, Image, ExifTags
-from firebase import put_firebase
+from scripts.firebase import put_firebase
 
 
 def myPutText(src, text, pos, font_size, font_color):
