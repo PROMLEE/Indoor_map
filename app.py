@@ -117,6 +117,18 @@ def list_directory(buildingname):
         return jsonify({"error": "Directory not found"}), 404
 
 
+@app.route("/dirimg/<buildingname>")
+def get_filelist(buildingname):
+    directory_path = f"sources/{buildingname}/images"
+    try:
+        file_list = os.listdir(directory_path)
+        for i in range(len(file_list)):
+            file_list[i] = file_list[i][-7:-5]
+        return jsonify(file_list)
+    except FileNotFoundError:
+        return jsonify({"error": "Directory not found"}), 404
+
+
 @app.route("/buildinglist")
 def building_list():
     directory_path = "result"
