@@ -215,6 +215,3 @@ def mask_to_json(buildingname):
     # JSON 파일로 저장
     with open(os.path.join(outputurl, buildingname + ".json"), "w") as file:
         json.dump(edge_data, file, indent=4)
-
-
-mask_to_json("CAU208_01")
