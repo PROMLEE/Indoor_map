@@ -143,7 +143,7 @@ def convert_non_greyscale_to_white(image):
 
 
 def plot_predictions(buildingname):
-    model = tf.keras.models.load_model("scripts\example.h5")
+    model = tf.keras.models.load_model("scripts/example.h5")
     inputurl = f"sources/{buildingname[:-3]}/gray/{buildingname}.png"
     outputurl = f"sources/{buildingname[:-3]}/mask"
     if not os.path.exists(outputurl):

@@ -4,7 +4,7 @@ from firebase_admin import firestore
 
 
 cred = credentials.Certificate(
-    "scripts\capston-design7-firebase-adminsdk-p4k7t-1579383ce6.json"
+    "scripts/capston-design7-firebase-adminsdk-p4k7t-1579383ce6.json"
 )
 firebase_admin.initialize_app(cred)
 
