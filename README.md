@@ -8,7 +8,7 @@
 <!-- [Backend : Algoritm + Server Part](https://github.com/PROMLEE/Indoor_map_algorithm)   -->
 [부가기능: React Part](https://github.com/PROMLEE/Indoor_map_react)  
 
-![Icon](src\ic_launcher.png)  
+![Icon](src/ic_launcher.png)  
 주제: 도면(안내도) 기반 image segmentation 기술을 이용한 실내 길찾기 지원 플랫폼 제작
 
-![Flowchart](src\Flowchart_backend.png)
+![Flowchart](src/Flowchart_backend.png)
