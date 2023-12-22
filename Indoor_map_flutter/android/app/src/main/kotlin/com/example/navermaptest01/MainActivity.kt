@@ -1,0 +1,6 @@
+package com.example.navermaptest01
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

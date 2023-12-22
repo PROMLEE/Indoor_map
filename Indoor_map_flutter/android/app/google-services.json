@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "534005083609",
+    "project_id": "capston-design7",
+    "storage_bucket": "capston-design7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534005083609:android:75b4524c5f0da695bafdc8",
+        "android_client_info": {
+          "package_name": "com.example.navermaptest01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2hPJNOi489cJ4yAzmWP8HZh-3P2WbW7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
